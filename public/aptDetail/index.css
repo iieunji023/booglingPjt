@@ -1,0 +1,136 @@
+#wrap {
+  width: 1600px;
+  margin: 0 auto;
+}
+
+#wrap > div.logo {
+  text-align: center;
+}
+
+#wrap > div.logo img {
+  margin-top: 3px;
+  height: 80px;
+  min-width: 280px;
+  max-width: 280px;
+  cursor: pointer;
+}
+
+#wrap > div.bar {
+  height: 80px;
+  border-bottom: 1px solid #dadada;
+  line-height: 80px;
+  background-color: rgba(132, 206, 58, 0.589);
+}
+
+#wrap input {
+  border: 1px solid #dadada;
+  border-radius: 5px;
+  padding: 4px;
+}
+#wrap select {
+  border: 1px solid #dadada;
+  border-radius: 5px;
+  padding: 4px;
+}
+
+#wrap > div.bar > ul.bar_ul > li.sign_in a,
+#wrap > div.bar > ul.bar_ul > li.sign_up a,
+#wrap > div.bar > ul.bar_ul > li.modify a,
+#wrap > div.bar > ul.bar_ul > li.apt_search a,
+#wrap > div.bar > ul.bar_ul > li.btn a {
+  line-height: 80px;
+  margin-left: 10px;
+  font-weight: bold;
+  color: #fff;
+}
+
+#wrap > div.bar > ul.bar_ul > li {
+  margin-right: 8px;
+}
+
+#wrap > div.bar > ul.bar_ul > li.apt_search,
+#wrap > div.bar > ul.bar_ul > li.actual_transaction_price,
+#wrap > div.bar > ul.bar_ul > li.region_settings,
+#wrap > div.bar > ul.bar_ul > li.btn {
+  float: right;
+  font-weight: bold;
+  color: #fff;
+}
+
+#wrap > div.detail {
+  width: 1200px;
+  text-align: center;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+}
+
+#wrap div.detail_wrap {
+  width: 600px;
+  margin-right: 100px;
+}
+
+#wrap div.detail_title {
+  border-bottom: 3px solid #dadada;
+
+  padding: 20px;
+}
+
+#wrap div.detail_title p {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+#wrap div.detail_address {
+  font-size: 1.2em;
+  padding: 15px;
+}
+
+#wrap div.detail_list {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+
+#wrap div.detail_list table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  border-spacing: 0px 10px;
+}
+
+#wrap div.detail_list table td {
+  border-bottom: 1px solid #dadada;
+  padding: 10px;
+  font-size: 1.2em;
+}
+
+#wrap div.menu_bar {
+  border: 1px solid #dadada;
+  border-radius: 7px;
+  margin-top: 25px;
+  padding: 15px;
+}
+
+#wrap div.menu_bar p {
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+#wrap div.search_btn {
+  margin-top: 9px;
+}
+
+#wrap div.search_btn a {
+  padding: 2px 3px;
+  border: 1px solid #dadada;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+
+#wrap > div.detail > div img {
+  margin-top: 30px;
+  min-width: 300px;
+  max-width: 300px;
+}

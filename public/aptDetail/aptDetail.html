@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+
+    <link href="./common.css" rel="stylesheet" type="text/css" />
+    <link href="./index.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="wrap">
+      <div class="logo">
+        <img src="./imgs/부글링로고.jpg" />
+      </div>
+
+      <div class="bar">
+        <ul class="bar_ul">
+          <li class="sign_in"><a href="">로그인</a></li>
+          <li class="sign_up"><a href="">회원가입</a></li>
+          <li class="modify"><a href="">회원정보수정</a></li>
+
+          <li class="btn"><a href="">찾기</a></li>
+
+          <li class="region_settings">
+            <span>지역설정</span>
+            <select name="region">
+              <option>지역설정</option>
+              <option>중구</option>
+              <option>서구</option>
+              <option>동구</option>
+              <option>영도구</option>
+              <option>부산진구</option>
+              <option>동래구</option>
+              <option>남구</option>
+              <option>북구</option>
+              <option>해운대구</option>
+              <option>사하구</option>
+              <option>금정구</option>
+              <option>강서구</option>
+              <option>연제구</option>
+              <option>수영구</option>
+              <option>사상구</option>
+              <option>기장군</option>
+            </select>
+            <select name="region_detail">
+              <option>행정구역</option>
+            </select>
+          </li>
+
+          <li class="apt_search">
+            <span>검색</span>
+            <input type="text" placeholder="아파트 명" />
+          </li>
+        </ul>
+      </div>
+      <div class="detail">
+        <div class="detail_wrap">
+          <div class="detail_title">
+            <p>센텀아파트</p>
+          </div>
+          <div class="detail_address">
+            <p>부산시 해운대구</p>
+          </div>
+          <div class="detail_list">
+            <table>
+              <tbody>
+                <tr>
+                  <td>계약일</td>
+                  <td>거래가격</td>
+                  <td>평수</td>
+                  <td>층수</td>
+                </tr>
+                <tr>
+                  <td>23.05.02</td>
+                  <td>5억 2000</td>
+                  <td>52</td>
+                  <td>25</td>
+                </tr>
+
+                <tr>
+                  <td>23.11.23</td>
+                  <td>11억 2300</td>
+                  <td>63</td>
+                  <td>11</td>
+                </tr>
+
+                <tr>
+                  <td>23.10.23</td>
+                  <td>10억 2300</td>
+                  <td>53</td>
+                  <td>10</td>
+                </tr>
+
+                <tr>
+                  <td>23.05.10</td>
+                  <td>5억 1000</td>
+                  <td>51</td>
+                  <td>5</td>
+                </tr>
+
+                <tr>
+                  <td>23.05.10</td>
+                  <td>5억 1000</td>
+                  <td>51</td>
+                  <td>5</td>
+                </tr>
+
+                <tr>
+                  <td>23.05.10</td>
+                  <td>5억 1000</td>
+                  <td>51</td>
+                  <td>5</td>
+                </tr>
+
+                <tr>
+                  <td>23.05.10</td>
+                  <td>5억 1000</td>
+                  <td>51</td>
+                  <td>5</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="search">
+          <div class="menu_bar">
+            <p>계약일자</p>
+            <input
+              type="date"
+              id="date"
+              max="2023-08-20"
+              min="2020-06-05"
+              value=""
+            />
+            <span>~</span>
+            <input
+              type="date"
+              id="date"
+              max="2023-08-20"
+              min="2020-06-05"
+              value=""
+            />
+            <br />
+            <p>금액설정</p>
+            <select name="min_price">
+              <option>전체금액</option>
+              <option>1억 이하</option>
+              <option>2억 이하</option>
+              <option>3억 이하</option>
+              <option>4억 이하</option>
+              <option>5억 이하</option>
+              <option>7억 이하</option>
+              <option>8억 이하</option>
+              <option>9억 이하</option>
+              <option>10억 이하</option>
+              <option>10억 이상</option>
+            </select>
+            <span> ~ </span>
+            <select name="max_price">
+              <option>전체금액</option>
+              <option>1억 이하</option>
+              <option>2억 이하</option>
+              <option>3억 이하</option>
+              <option>4억 이하</option>
+              <option>5억 이하</option>
+              <option>7억 이하</option>
+              <option>8억 이하</option>
+              <option>9억 이하</option>
+              <option>10억 이하</option>
+              <option>10억 이상</option>
+            </select>
+
+            <br />
+            <p>면적설정</p>
+            <select name="area">
+              <option>모든평수</option>
+              <option>10평대</option>
+              <option>20평대</option>
+              <option>30평대</option>
+              <option>40평대</option>
+              <option>50평대</option>
+              <option>60평대</option>
+              <option>70평 이상</option>
+            </select>
+
+            <br />
+            <div class="search_btn">
+              <a href="#none">찾기</a>
+            </div>
+          </div>
+          <div class="map">
+            <img src="./imgs/map.jpg" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- <template id="list_item">
+  <tr>
+    <td class="info"></td>
+    <td></td>
+  </tr>
+</template> -->

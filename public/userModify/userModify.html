@@ -1,0 +1,78 @@
+-<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+
+    <link href="./common.css" rel="stylesheet" type="text/css" />
+    <link href="./index.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="wrap">
+      <div class="logo">
+        <img src="./imgs/부글링로고.jpg" />
+      </div>
+
+      <div class="bar">
+        <ul class="bar_ul">
+          <li class="sign_in"><a href="">로그인</a></li>
+          <li class="sign_up"><a href="">회원가입</a></li>
+          <li class="modify"><a href="">회원정보수정</a></li>
+
+          <li class="btn"><a href="">찾기</a></li>
+
+          <li class="region_settings">
+            <span>지역설정</span>
+            <select name="region">
+              <option>지역설정</option>
+              <option>중구</option>
+              <option>서구</option>
+              <option>동구</option>
+              <option>영도구</option>
+              <option>부산진구</option>
+              <option>동래구</option>
+              <option>남구</option>
+              <option>북구</option>
+              <option>해운대구</option>
+              <option>사하구</option>
+              <option>금정구</option>
+              <option>강서구</option>
+              <option>연제구</option>
+              <option>수영구</option>
+              <option>사상구</option>
+              <option>기장군</option>
+            </select>
+            <select name="region_detail">
+              <option>행정구역</option>
+            </select>
+          </li>
+
+          <li class="apt_search">
+            <span>검색</span>
+            <input type="text" placeholder="아파트 명" />
+          </li>
+        </ul>
+      </div>
+      <div class="modify">
+        <div>
+          <p>이름</p>
+        </div>
+        <br />
+        <input type="email" name="m_mail" placeholder="e-mail" />
+        <br />
+        <input type="password" name="m_pw" placeholder="비밀번호" />
+        <br />
+        <input type="text" name="birth" placeholder="생년월일" />
+        <br />
+        <input type="text" name="addr1" id="addr1" placeholder="주소" />
+        <br />
+        <input type="number" name="m_phone" placeholder="휴대폰번호" />
+        <br />
+        <div class="btn">
+          <input type="button" value="수정" />
+          <input type="button" value="취소" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
