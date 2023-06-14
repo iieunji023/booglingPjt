@@ -1,0 +1,75 @@
+section  div.main {
+    margin: 5px auto;
+    display: flex;
+    justify-content: center;
+}
+
+section  div.main li.map {
+    width: 800px;
+    margin-top: 17px;
+    text-align: center;
+}
+
+section  div.main li.view {
+    width: 350px;
+    margin: 0 20px;
+}
+
+section  div.apt_ranking,
+section  div.apt_top,
+section  div.wishlist,
+section  div.real_time_search {
+    height: 355px;
+    margin-top: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #fff;
+    border: 1px solid #dadada;
+    border-radius: 10px;
+    text-align: center;
+}
+
+section  div.apt_ranking_title,
+section  div.apt_top_title,
+section  div.wishlist_title,
+section  div.real_time_search_title {
+    font-weight: bold;
+    font-size: 1.4em;
+    padding: 10px 0;
+    text-align: center;
+}
+
+section  div.apt_ranking_main div,
+section  div.apt_top_main div,
+section  div.wishlist_main div,
+section  div.real_time_search_main div {
+    border-top: 1px solid #dadada;
+    text-align: center;
+}
+
+section  div.apt_ranking_main ul,
+section  div.apt_top_main ul,
+section  div.wishlist_main ul {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+section  div.main li.view a {
+    font-weight: bold;
+    text-align: center;
+}
+section  div.main li.view li {
+    margin-top: 3px;
+    margin-right: 10px;
+}
+
+section  p.increase {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+section  p.decrease {
+    color: #0051ff;
+    font-weight: bold;
+}

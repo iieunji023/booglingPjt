@@ -1,0 +1,62 @@
+/*header 시작*/
+header {
+    width: 1600px; margin: 0 auto;
+}
+
+header div.logo {
+    text-align: center;
+}
+
+header div.logo img {
+    margin-top: 3px;
+    height: 65px;
+    min-width: 270px;
+    max-width: 270px;
+}
+/*header 끝*/
+
+/*nav 시작*/
+nav div.bar{
+    width: 1600px; margin: 0 auto;
+    height: 80px;
+    border-bottom: 1px solid #dadada;
+    line-height: 80px;
+    background-color: rgba(132, 206, 58, 0.589);
+}
+
+nav div.bar input {
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    padding: 4px;
+}
+nav div.bar select {
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    padding: 4px;
+}
+
+nav div.bar > ul.bar_ul > li.sign_in a,
+nav div.bar > ul.bar_ul > li.sign_up a,
+nav div.bar > ul.bar_ul > li.modify a,
+nav div.bar > ul.bar_ul > li.apt_search a,
+nav div.bar > ul.bar_ul > li.btn a {
+    display: inline-block;
+    line-height: 80px;
+    margin-left: 10px;
+    font-weight: bold;
+    color: #fff;
+}
+
+nav div.bar > ul.bar_ul > li {
+    margin-right: 8px;
+}
+
+nav div.bar > ul.bar_ul > li.apt_search, 
+nav div.bar > ul.bar_ul > li.actual_transaction_price, 
+nav div.bar > ul.bar_ul > li.region_settings, 
+nav div.bar > ul.bar_ul > li.btn {
+    float: right;
+    font-weight: bold;
+    color: #fff;
+}
+/*nav 끝*/
