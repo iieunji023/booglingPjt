@@ -1,9 +1,6 @@
 import React from "react";
 
 const AptPriceRank = () => {
-    return(
-        <>
-        </>
-    );
-}
+  return <></>;
+};
 export default AptPriceRank;

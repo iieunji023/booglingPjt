@@ -1,9 +1,6 @@
 import React from "react";
 
 const AptRisingRank = () => {
-    return(
-        <>
-        </>
-    );
-}
+  return <></>;
+};
 export default AptRisingRank;

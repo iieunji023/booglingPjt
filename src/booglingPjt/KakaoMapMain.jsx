@@ -3,24 +3,56 @@ import React, { useEffect } from "react";
 const { kakao } = window;
 
 const KakaoMapMain = () => {
+  useEffect(() => {
+    var container = document.getElementById("map");
+    var options = {
+      center: new kakao.maps.LatLng(33.450701, 126.570667),
+      level: 3,
+    };
+    var map = new kakao.maps.Map(container, options);
+    // 마커를 표시할 위치와 title 객체 배열입니다
+    var positions = [
+      {
+        title: "카카오",
+        latlng: new kakao.maps.LatLng(33.450705, 126.570677),
+      },
+      {
+        title: "생태연못",
+        latlng: new kakao.maps.LatLng(33.450936, 126.569477),
+      },
+      {
+        title: "텃밭",
+        latlng: new kakao.maps.LatLng(33.450879, 126.56994),
+      },
+      {
+        title: "근린공원",
+        latlng: new kakao.maps.LatLng(33.451393, 126.570738),
+      },
+    ];
 
-    useEffect(() => {
-        const container = document.getElementById('map');
+    // 마커 이미지의 이미지 주소입니다
+    var imageSrc =
+      "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 
-        const options = {
-            center: new kakao.maps.LatLng(35.172854800000, 129.130733800000),
-            level: 3
-        };
+    for (var i = 0; i < positions.length; i++) {
+      // 마커 이미지의 이미지 크기 입니다
+      var imageSize = new kakao.maps.Size(24, 35);
 
-        const map = new kakao.maps.Map(container, options);
-    }, [])
+      // 마커 이미지를 생성합니다
+      var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
-    return (
+      // 마커를 생성합니다
+      var marker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: positions[i].latlng, // 마커를 표시할 위치
+        title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image: markerImage, // 마커 이미지
+      });
+    }
+    // marker.setMap(map);
+  }, []);
 
-        <li id="map" style={{ width: "800px", height: "725px" }}>
-        </li >
-    );
-
-}
+  return <li id="map" style={{ width: "800px", height: "725px" }}></li>;
+};
 
 export default KakaoMapMain;
