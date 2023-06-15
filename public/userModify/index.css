@@ -3,11 +3,11 @@
   margin: 0 auto;
 }
 
-#wrap > div.logo {
+#wrap > header > div.header_wrap > div.logo {
   text-align: center;
 }
 
-#wrap > div.logo img {
+#wrap > header > div.header_wrap > div.logo img {
   margin-top: 3px;
   height: 80px;
   min-width: 280px;
@@ -15,49 +15,49 @@
   cursor: pointer;
 }
 
-#wrap > div.bar {
+#wrap > nav > div.nav_wrap > div.bar {
   height: 80px;
   border-bottom: 1px solid #dadada;
   line-height: 80px;
   background-color: rgba(132, 206, 58, 0.589);
 }
 
-#wrap > div.bar input {
+#wrap > nav > div.nav_wrap > div.bar input {
   border: 1px solid #dadada;
   border-radius: 5px;
   padding: 4px;
 }
-#wrap > div.bar select {
+#wrap > nav > div.nav_wrap > div.bar select {
   border: 1px solid #dadada;
   border-radius: 5px;
   padding: 4px;
 }
 
-#wrap > div.bar > ul.bar_ul > li.sign_in a,
-#wrap > div.bar > ul.bar_ul > li.sign_up a,
-#wrap > div.bar > ul.bar_ul > li.modify a,
-#wrap > div.bar > ul.bar_ul > li.apt_search a,
-#wrap > div.bar > ul.bar_ul > li.btn a {
+#wrap > nav > div.nav_wrap > div.bar > ul.bar_ul > li.sign_in a,
+#wrap > nav > div.nav_wrap > div.bar > ul.bar_ul > li.sign_up a,
+#wrap > nav > div.nav_wrap > div.bar > ul.bar_ul > li.modify a,
+#wrap > nav > div.nav_wrap > div.bar > ul.bar_ul > li.apt_search a,
+#wrap > nav > div.nav_wrap > div.bar > ul.bar_ul > li.btn a {
   line-height: 80px;
   margin-left: 10px;
   font-weight: bold;
   color: #fff;
 }
 
-#wrap > div.bar > ul.bar_ul > li {
+#wrap > nav > div.nav_wrap > div.bar > ul.bar_ul > li {
   margin-right: 8px;
 }
 
-#wrap > div.bar > ul.bar_ul > li.apt_search,
-#wrap > div.bar > ul.bar_ul > li.actual_transaction_price,
-#wrap > div.bar > ul.bar_ul > li.region_settings,
-#wrap > div.bar > ul.bar_ul > li.btn {
+#wrap > nav > div.nav_wrap > div.bar > ul.bar_ul > li.apt_search,
+#wrap > nav > div.nav_wrap > div.bar > ul.bar_ul > li.actual_transaction_price,
+#wrap > nav > div.nav_wrap > div.bar > ul.bar_ul > li.region_settings,
+#wrap > nav > div.nav_wrap > div.bar > ul.bar_ul > li.btn {
   float: right;
   font-weight: bold;
   color: #fff;
 }
 
-#wrap > div.modify {
+#wrap > section > div.section_wrap > div.modify {
   /* position: relative; */
   margin: 50px auto;
   width: 400px;
@@ -71,7 +71,7 @@
   padding: 50px;
 }
 
-#wrap > div.modify input {
+#wrap > section > div.section_wrap > div.modify input {
   padding: 15px;
   border-radius: 7px;
   border: 1px solid #dadada;
@@ -80,11 +80,11 @@
   /* margin: 5px; */
 }
 
-#wrap > div.modify > div.btn {
+#wrap > section > div.section_wrap > div.modify > div.btn {
   width: 100%;
 }
 
-#wrap > div.modify input[type="button"] {
+#wrap > section > div.section_wrap > div.modify input[type="button"] {
   background-color: #ebe7e7;
   width: 100px;
   text-align: center;

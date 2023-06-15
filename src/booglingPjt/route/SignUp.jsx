@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
-// import "./css/signUp.css";
+import { useNavigate } from "react-router-dom";
+import "./css/signUp.css";
 
 const SIGN_UP_BUTTON = "1";
 const RESET_BUTTON = "2";
 
-const SignUp = (userDB) => {
+const SignUp = ({ userDB }) => {
   // const [userDB, setUserDB] = useState(new Map());
+  const navigate = useNavigate();
   const [m_name, setM_name] = useState("");
   const [m_mail, setM_mail] = useState("");
   const [m_pw, setM_pw] = useState("");
   const [m_birth, setM_birth] = useState("");
   const [m_addr, setM_addr] = useState("");
   const [m_phone, setM_phone] = useState("");
+
+  let loginedMember = "";
 
   useEffect(() => {
     console.log("[SignUp] useEffect() CALLED!!");
@@ -32,7 +36,8 @@ const SignUp = (userDB) => {
             m_phone: m_phone,
           });
           console.log(userDB);
-          alert("회원가입이 완료되었습니다.");
+          navigate("/user/sign_up_result");
+          // alert("회원가입이 완료되었습니다.");
         }
         break;
 
@@ -54,7 +59,7 @@ const SignUp = (userDB) => {
       alert("이름을 입력해주세요.");
       result = false;
     } else if (m_mail === "") {
-      alert("메일을 입력해주세요.");
+      alert("이메일을 입력해주세요.");
       result = false;
     } else if (m_pw === "") {
       alert("비밀번호를 입력해주세요.");
