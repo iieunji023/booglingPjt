@@ -16,22 +16,22 @@ const Nav = () => {
                     <li className="region_settings">
                         <span>지역설정</span>
                         <select name="region">
-                            <option>중구</option>
-                            <option>서구</option>
-                            <option>동구</option>
-                            <option>영도구</option>
-                            <option>부산진구</option>
-                            <option>동래구</option>
-                            <option>남구</option>
-                            <option>북구</option>
-                            <option>해운대구</option>
-                            <option>사하구</option>
-                            <option>금정구</option>
-                            <option>강서구</option>
-                            <option>연제구</option>
-                            <option>수영구</option>
-                            <option>사상구</option>
-                            <option>기장군</option>
+                            <option value='11'>중구</option>
+                            <option value='14'>서구</option>
+                            <option value='17'>동구</option>
+                            <option value='20'>영도구</option>
+                            <option value='23'>부산진구</option>
+                            <option value='26'>동래구</option>
+                            <option value='29'>남구</option>
+                            <option value='32'>북구</option>
+                            <option value='35'>해운대구</option>
+                            <option value='38'>사하구</option>
+                            <option value='41'>금정구</option>
+                            <option value='44'>강서구</option>
+                            <option value='47'>연제구</option>
+                            <option value='50'>수영구</option>
+                            <option value='53'>사상구</option>
+                            <option value='71'>기장군</option>
                         </select>
                     </li>
 

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import './css/search.css'
 import './css/common.css'
@@ -6,6 +7,7 @@ import axios from "axios";
 const serviceKey = "IyQg8I2dXbv8kkUs2Gki35cm64Cu%2BxaUWkNCsFipH3WWV6%2FiZD4HHrq4v%2Bykezvft92l9H5S0zULIYrQonfaUA%3D%3D" // 서비스키(필수)
 const pageNo = 1;          // 페이지 번호(옵션)
 const numOfRows = 3;     // 한 페이지 결과 수(옵션)
+
 
 
 
@@ -89,6 +91,9 @@ const Search = () => {
 
     }
 
+
+
+
     return (
         <div id="wrap">
 
@@ -102,7 +107,8 @@ const Search = () => {
 
                     <li className="region_settings">
                         <span>지역설정</span>
-                        <select name="region" onChange={lawdCdChangeHandler}>
+                        <select name="region">
+
                             <option>지역설정</option>
                             <option value='11'>중구</option>
                             <option value='14'>서구</option>
@@ -142,11 +148,13 @@ const Search = () => {
                                 <li className="floor">층수</li>
                             </ul>
                             <ul>
+
                                 <li><a href="#none">{ }</a></li>
                                 <li>{ }</li>
                                 <li>{ }</li>
                                 <li className="area">{ }</li>
                                 <li className="floor">{ }</li>
+
                             </ul>
 
 
@@ -168,9 +176,10 @@ const Search = () => {
                     <li className="menu">
                         <div className="contract_date">
                             <p>계약일자</p>
+
                             <input type="date" id="date" max="2023-08-20" min="2020-06-05" value="" />
-                            ~
                             <input type="date" id="date" max="2023-08-20" min="2020-06-05" value="" />
+
                         </div>
                         <div className="price_settings">
                             <p>금액설정</p>
@@ -222,6 +231,8 @@ const Search = () => {
                     </li>
                 </ul>
             </div>
+
+
 
         </div>
     );
