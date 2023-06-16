@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 
 const { kakao } = window;
 
-const KakaoMapMain = () => {
+const KakaoMapMain = ({item}) => {
+  // console.log('[KakaoMapMain] ---> ', item)
   useEffect(() => {
     var container = document.getElementById("map");
     var options = {
