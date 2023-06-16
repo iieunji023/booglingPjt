@@ -1,0 +1,33 @@
+section > div.section_wrap > div.sign_up {
+  margin: 50px auto;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid #dadada;
+  border-radius: 15px;
+  padding: 50px;
+}
+
+section > div.section_wrap > div.sign_up input {
+  padding: 15px;
+  border-radius: 7px;
+  border: 1px solid #dadada;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+div.buttons {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+section > div.section_wrap > div.sign_up input[type="button"] {
+  width: 150px;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

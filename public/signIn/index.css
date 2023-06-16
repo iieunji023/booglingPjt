@@ -1,0 +1,96 @@
+#wrap {
+  width: 1600px;
+  margin: 0 auto;
+}
+
+#wrap > header > div.header_wrap > div.logo {
+  text-align: center;
+}
+
+#wrap > header > div.header_wrap > div.logo img {
+  margin-top: 3px;
+  height: 80px;
+  min-width: 280px;
+  max-width: 280px;
+  cursor: pointer;
+}
+
+#wrap > nav > div.nav_wrap > div.bar {
+  height: 80px;
+  border-bottom: 1px solid #dadada;
+  line-height: 80px;
+  background-color: rgba(132, 206, 58, 0.589);
+}
+
+#wrap > nav > div.nav_wrap > div.bar input {
+  border: 1px solid #dadada;
+  border-radius: 5px;
+  padding: 4px;
+}
+#wrap > nav > div.nav_wrap > div.bar select {
+  border: 1px solid #dadada;
+  border-radius: 5px;
+  padding: 4px;
+}
+
+#wrap > nav > div.nav_wrap > div.bar > ul.bar_ul > li.sign_in a,
+#wrap > nav > div.nav_wrap > div.bar > ul.bar_ul > li.sign_up a,
+#wrap > nav > div.nav_wrap > div.bar > ul.bar_ul > li.modify a,
+#wrap > nav > div.nav_wrap > div.bar > ul.bar_ul > li.apt_search a,
+#wrap > nav > div.nav_wrap > div.bar > ul.bar_ul > li.btn a {
+  line-height: 80px;
+  margin-left: 10px;
+  font-weight: bold;
+  color: #fff;
+}
+
+#wrap > nav > div.nav_wrap > div.bar > ul.bar_ul > li {
+  margin-right: 8px;
+}
+
+#wrap > nav > div.nav_wrap > div.bar > ul.bar_ul > li.apt_search,
+#wrap > nav > div.nav_wrap > div.bar > ul.bar_ul > li.actual_transaction_price,
+#wrap > nav > div.nav_wrap > div.bar > ul.bar_ul > li.region_settings,
+#wrap > nav > div.nav_wrap > div.bar > ul.bar_ul > li.btn {
+  float: right;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* #wrap > div.sign_in {
+  text-align: center;
+  margin-top: 10px;
+  border: 1px solid #dadada;
+  border-radius: 10px;
+} */
+
+#wrap > section > div.section_wrap > div.sign_in {
+  /* position: relative; */
+  margin: 50px auto;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* padding: var(--padding); */
+  /* background-color: #c4dfff; */
+  border: 2px solid #dadada;
+  border-radius: 15px;
+  padding: 50px;
+}
+
+#wrap > section > div.section_wrap > div.sign_in input {
+  padding: 15px;
+  border-radius: 7px;
+  border: 1px solid #dadada;
+  font-size: 1em;
+  cursor: pointer;
+  /* margin: 5px; */
+}
+
+#wrap > section > div.section_wrap > div.sign_in input[type="button"] {
+  background-color: #ebe7e7;
+  /* width: 220px; */
+  text-align: center;
+  /* height: 15px;
+  line-height: 5px; */
+}

@@ -1,9 +1,6 @@
 import React from "react";
 
 const AptDetail = () => {
-    return(
-        <>
-        </>
-    );
-}
+  return <></>;
+};
 export default AptDetail;
