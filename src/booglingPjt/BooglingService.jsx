@@ -14,6 +14,8 @@ import UserModify from "./route/UserModify";
 import UserModifyResult from "./route/UserModifyResult";
 
 import axios from "axios";
+import Favorites from "./route/Favorites";
+import AptDetail from "./route/AptDetail";
 
 const serviceKey =
   "IyQg8I2dXbv8kkUs2Gki35cm64Cu%2BxaUWkNCsFipH3WWV6%2FiZD4HHrq4v%2Bykezvft92l9H5S0zULIYrQonfaUA%3D%3D"; // 서비스키(필수)
@@ -70,7 +72,7 @@ const BooglingService = () => {
       // setItem([...item,items])
       // let temp = item.slice()
       // setItem(temp)
-      console.log("item ---> \n", item);
+      // console.log("item ---> \n", item);
 
       // items.map((item, idx) => {
       //     console.log('idx  ---> ', idx);
@@ -158,6 +160,8 @@ const BooglingService = () => {
             path="/user/modify_result"
             element={<UserModifyResult />}
           ></Route>
+          <Route path="/user/favorites" element={<Favorites />}></Route>
+          <Route path="/apt_detail" element={<AptDetail item={item} userDB={userDB} signInedMember={signInedMember} />}></Route>
           <Route path="*" element={<Main />}></Route>
         </Routes>
       </BrowserRouter>

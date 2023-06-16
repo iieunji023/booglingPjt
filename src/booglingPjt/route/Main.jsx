@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import KakaoMapMain from "../KakaoMapMain";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './css/main.css';
 
 const Main = () => {
+    
+
     return (
-        <section>   
+        <main>
             <div className="main">
                 <ul>
 
@@ -14,7 +16,7 @@ const Main = () => {
                             <div className="apt_ranking_title"><a href="#none">아파트 실거래가 순위</a></div>
                             <div className="apt_ranking_main">
                                 <div>
-                                    <Link>1. 해운대 아파트</Link>
+                                    <Link to="/apt_detail">1. 해운대 아파트</Link>
                                     <ul>
                                         <li><p className="increase">상승</p></li>
                                         <li>
@@ -151,7 +153,7 @@ const Main = () => {
 
                     <li className="view">
                         <div className="wishlist">
-                            <div className="wishlist_title"><a href="#none">즐겨찾기</a></div>
+                            <div className="wishlist_title"><Link to="/user/favorites">즐겨찾기</Link></div>
                             <div className="wishlist_main">
                                 <div>
                                     <a href="#none">해운대 아파트</a>
@@ -242,7 +244,7 @@ const Main = () => {
                 </ul>
             </div>
 
-        </section>
+        </main>
     );
 }
 export default Main;
