@@ -1,20 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import KakaoMapMain from "../KakaoMapMain";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './css/main.css';
 import AptPriceRank from "./AptPriceRank";
 
 const Main = ({ item }) => {
-
+    console.log("item ", item)
     return (
-        <section>
+        <main>
             <div className="main">
                 <ul>
-
                     <li className="view">
-                        {/* <div className="apt_ranking"> */}
+
                         {item.length !== 0 ? <AptPriceRank item={item} /> : null}
-                        {/* </div> */}
 
                         <div className="apt_top">
                             <div className="apt_top_title">올해의 급상승 아파트</div>
@@ -93,7 +91,7 @@ const Main = ({ item }) => {
 
                     <li className="view">
                         <div className="wishlist">
-                            <div className="wishlist_title">즐겨찾기</div>
+                            <div className="wishlist_title"><Link to="/user/favorites">즐겨찾기</Link></div>
                             <div className="wishlist_main">
                                 <div>
                                     <a href="#none">해운대 아파트</a>
@@ -184,7 +182,7 @@ const Main = ({ item }) => {
                 </ul>
             </div>
 
-        </section>
+        </main>
     );
 }
 export default Main;

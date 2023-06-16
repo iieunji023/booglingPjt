@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+
 const AptPriceRankMain = ({ item }) => {
 
     let [apartNameTitle, setApartNameTitle] = useState([]);
@@ -79,7 +80,7 @@ const AptPriceRankMain = ({ item }) => {
 
 
     return (
-        <div>
+        <>
             {
                 resultArray.map((item, idx) => (
                     idx <= 4 ?
@@ -95,7 +96,7 @@ const AptPriceRankMain = ({ item }) => {
                 ))
             }
 
-        </div>
+        </>
     );
 }
 export default AptPriceRankMain;

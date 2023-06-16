@@ -1,4 +1,4 @@
-#wrap > section > div.section_wrap > div.modify {
+section > div.section_wrap > div.modify {
   /* position: relative; */
   margin: 50px auto;
   width: 400px;
@@ -12,23 +12,26 @@
   padding: 50px;
 }
 
-#wrap > section > div.section_wrap > div.modify input {
+section > div.section_wrap > div.modify input {
   padding: 15px;
   border-radius: 7px;
   border: 1px solid #dadada;
   font-size: 1em;
   cursor: pointer;
-  /* margin: 5px; */
 }
 
-#wrap > section > div.section_wrap > div.modify > div.btn {
+div.btn {
   width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
 }
 
-#wrap > section > div.section_wrap > div.modify input[type="button"] {
+section > div.section_wrap > div.modify input[type="button"] {
   background-color: #ebe7e7;
-  width: 100px;
+  width: 150px;
   text-align: center;
+
   /* height: 15px;
       line-height: 5px; */
 }

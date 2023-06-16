@@ -4,10 +4,13 @@ import React, {
     useImperativeHandle,
     useState,
 } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Nav = forwardRef(({ signInedMember, userDB }, ref) => {
     const [loginedMember, setLoginedMember] = useState("");
+    const [searchValue, setSearchValue] = useState("");
+    const [selectedRegion, setSelectedRegion] = useState("");
+
 
     useEffect(() => {
         console.log("[Nav] useEffect() CALLED!!");
@@ -20,10 +23,12 @@ const Nav = forwardRef(({ signInedMember, userDB }, ref) => {
         setLoginedMember(signInedMember.current);
     };
 
+    // Nav의 changeLoginMember 함수를 하위에서 사용할 수 있게 하기 위함
     useImperativeHandle(ref, () => ({
         changeLoginMember,
     }));
 
+    // SIGNOUT HANDLER
     const signOutClickHandler = () => {
         console.log("[Nav] signOutClickHandler() CALLED!!");
 
@@ -31,8 +36,28 @@ const Nav = forwardRef(({ signInedMember, userDB }, ref) => {
         setLoginedMember("");
     };
 
+    // USERMODIFY HANDLER
     const modifyAccountClickHandler = () => {
         console.log("[Nav] modifyAccountClickHandler() CALLED!!");
+    };
+
+    const regionChangeEventHendler = (e) => {
+        console.log('[Nav] regionChangeEventHendler() CALLED!!');
+        setSelectedRegion(e.target.value)
+    }
+
+    const navigate = useNavigate();
+    const clicked = () => {
+        navigate("/search", {
+            state: {
+                region: selectedRegion,
+                searchValue: searchValue,
+            }
+        });
+    };
+
+    const handleInputChange = (e) => {
+        setSearchValue(e.target.value);
     };
 
     return (
@@ -43,7 +68,7 @@ const Nav = forwardRef(({ signInedMember, userDB }, ref) => {
                         {loginedMember === "" ? (
                             <Link to="/user/sign_Up">회원가입</Link>
                         ) : (
-                            <span>[Welcom {loginedMember}]</span>
+                            <span>[Welcome {loginedMember}]</span>
                         )}
                     </li>
                     <li className="sign_in">
@@ -64,35 +89,41 @@ const Nav = forwardRef(({ signInedMember, userDB }, ref) => {
                         )}
                     </li>
 
-                    <li className="btn">
-                        <Link>찾기</Link>
+                    <li className="btn" onClick={clicked}>
+                        <Link to='/search' >찾기</Link>
                     </li>
 
                     <li className="region_settings">
                         <span>지역설정</span>
-                        <select name="region">
-                            <option>중구</option>
-                            <option>서구</option>
-                            <option>동구</option>
-                            <option>영도구</option>
-                            <option>부산진구</option>
-                            <option>동래구</option>
-                            <option>남구</option>
-                            <option>북구</option>
-                            <option>해운대구</option>
-                            <option>사하구</option>
-                            <option>금정구</option>
-                            <option>강서구</option>
-                            <option>연제구</option>
-                            <option>수영구</option>
-                            <option>사상구</option>
-                            <option>기장군</option>
+                        <select name="region" onChange={regionChangeEventHendler}>
+                            <option value='00000' >지역설정</option>
+                            <option value='26110'> 중구</option>
+                            <option value='26140'> 서구</option>
+                            <option value='26170'> 동구</option>
+                            <option value='26200'> 영도구</option>
+                            <option value='26230'> 부산진구</option>
+                            <option value='26260'> 동래구</option>
+                            <option value='26290'> 남구</option>
+                            <option value='26320'> 북구</option>
+                            <option value='26350'> 해운대구</option>
+                            <option value='26380'> 사하구</option>
+                            <option value='26410'> 금정구</option>
+                            <option value='26440'> 강서구</option>
+                            <option value='26470'> 연제구</option>
+                            <option value='26500'> 수영구</option>
+                            <option value='26530'> 사상구</option>
+                            <option value='26710'> 기장군</option>
                         </select>
                     </li>
 
                     <li className="apt_search">
                         <span>검색</span>
-                        <input type="text" placeholder="아파트 명" />
+                        <input
+                            type="text"
+                            placeholder="아파트 명"
+                            value={searchValue}
+                            onChange={handleInputChange}
+                        />
                     </li>
                 </ul>
             </div>
@@ -100,4 +131,3 @@ const Nav = forwardRef(({ signInedMember, userDB }, ref) => {
     );
 });
 export default Nav;
-

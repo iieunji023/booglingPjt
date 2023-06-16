@@ -11,82 +11,53 @@ import SignIn from "./route/SignIn";
 import SignInResult from "./route/SignInResult";
 import UserModify from "./route/UserModify";
 import UserModifyResult from "./route/UserModifyResult";
+import Search from "./route/Search";
 
 import axios from "axios";
+import KakaoMapMain from "./KakaoMapMain";
+import Favorites from "./route/Favorites";
+import AptDetail from "./route/AptDetail";
 
-const serviceKey = "4QZ4e0ftFVHceln9FiZ6yhc%2BsY3bdDiyce%2BULzBK87k5Hnrs0B10zEajsBdqg5TcQgPo0dz5lzbmrkev1dZXWg%3D%3D";
-
+const serviceKey =
+    "0TEjPSWe8Amdu9ZJNlmbFk6NN2BTXyQ%2FmbjKh0CNdzVi1HdozklmwK1bMRH%2BwqQ9v9d0Tz7p%2FSquZPjNdufLdg%3D%3D"; // 서비스키(필수)
 const pageNo = 1; // 페이지 번호(옵션)
 const numOfRows = 10; // 한 페이지 결과 수(옵션)
 
 const BooglingService = () => {
-
-    const [userDB, setUserDB] = useState(new Map());
-    const signInedMember = useRef("");
-    const changeLoginStatus = useRef("");
+    const [userDB, setUserDB] = useState(new Map()); // 사용자 데이터베이스를 관리하기 위한 상태 변수
+    const signInedMember = useRef(""); // 현재 로그인한 회원을 저장하기 위한 참조 변수
+    const changeLoginStatus = useRef(""); // 로그인 상태 변경 함수를 호출하기 위한 참조 변수
 
     const setLoginedSession = () => {
         console.log("[BooglingService] setLoginedSesstion() CALLED!!");
 
-        changeLoginStatus.current.changeLoginMember(signInedMember);
+        changeLoginStatus.current.changeLoginMember(signInedMember); // 로그인된 회원을 변경하도록 로그인 상태 변경 함수 호출
     };
 
-    // const [lawdCd, setLawdCd] = useState('');
-    // const [dealYMD, setdealYMD] = useState('');
     const [item, setItem] = useState([]); //중복값이 있는 아파트명 목록
-    // const [updateItem, setUpdateItem] = useState(0);
+
     useEffect(() => {
-        console.log("[BooglingService] useEffect!!");
+        console.log("[BooglingService] useEffect1!!");
 
-        getRemoteData();
-
+        getRemoteData(); // 원격 데이터를 가져오기 위한 함수 호출
     }, []);
-
-    // useEffect(() => {
-    //     console.log("[BooglingService] item ---> \n", item);
-    // }, [item]) // 데이터를 받아왔는지 확인 하기 위해 사용한다. 
-
-    // let LAWD_CD = `26${lawdCd}0`;           // 지역코드(필수)
-    // let DEAL_YMD = '201512';                // 계약년월(필수)
-
-    // Handler START
-    // const lawdCdChangeHandler = (e) => {
-    //     console.log('[Search] lawdCdChangeHandler() CALLED!!');
-
-    //     setLawdCd(() => '26' + e.target.value + '0');
-
-    // }
-    // Handler END
 
     async function getData(y, m, r) {
         console.log("[BooglingService] getData() CALLED!!");
 
         try {
-            let deal_ymd = (y + m) * 1; // 년도월, ex) 2022년 01월 == 202201
-            let region = `26${r}0`;
+            let deal_ymd = (y + m) * 1; // 년도와 월을 조합하여 거래 년월을 생성 (예: 2022년 01월 -> 202201)
+            let region = `26${r}0`; // 지역 코드 생성
 
             let url = `http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev?serviceKey=${serviceKey}&pageNo=${pageNo}&numOfRows=${numOfRows}&LAWD_CD=${region}&DEAL_YMD=${deal_ymd}`;
-            const response = await axios.get(url);
+            const response = await axios.get(url); // API를 호출하여 데이터 가져오기
             // console.log('response ---> \n', response.data.response.body.items.item);
+
             let items = response.data.response.body.items.item;
-            item.push(items);
-            // setItem([...item, items]);
-
-            // setUpdateItem(c => c + 1);
-            // console.log(items)
-            // setItem([...item,items])
-            let temp = item.slice()
-            setItem(temp)
-
-
-            // items.map((item, idx) => {
-            //     console.log('idx  ---> ', idx);
-            //     console.log('item ---> ', item);
-            //     console.log('item ---> ', item.아파트);
-            //     console.log('item ---> ', item.도로명);
-            //     console.log('item ---> ', item.도로명건물본번호코드);
-
-            // });
+            item.push(items); // 가져온 데이터를 목록에 추가
+            let temp = item.slice();
+            setItem(temp); // 목록 업데이트
+            // setItem([...item, items])
         } catch (error) {
             console.log(error);
         } finally {
@@ -94,16 +65,15 @@ const BooglingService = () => {
         }
     }
 
-
     async function getRemoteData() {
-        console.log("[Search] getRemoteData() CALLED!!");
+        console.log("[BooglingService] getRemoteData() CALLED!!");
 
         let year = ["2022"];
         let month = ["01"];
         let region = [
-            // "11",
-            // "14",
-            // "17",
+            "11",
+            "14",
+            "17",
             // "20",
             // "23",
             // "26",
@@ -111,9 +81,9 @@ const BooglingService = () => {
             // "32",
             // "35",
             // "38",
-            "41",
-            "44",
-            "47",
+            // "41",
+            // "44",
+            // "47",
             // "50",
             // "53",
             // "71",
@@ -123,7 +93,7 @@ const BooglingService = () => {
             year.map(function (y) {
                 month.map(function (m) {
                     region.map(function (r) {
-                        getData(y, m, r);
+                        getData(y, m, r); // 각 조합에 대해 데이터 가져오는 함수 호출
                     });
                 });
             });
@@ -131,7 +101,6 @@ const BooglingService = () => {
             console.log(error);
         } finally {
             console.log("finally");
-
         }
     }
 
@@ -139,7 +108,7 @@ const BooglingService = () => {
         <>
             <BrowserRouter>
                 <Header />
-                <Nav />
+                <Nav ref={changeLoginStatus} signInedMember={signInedMember} />
                 <Routes>
                     <Route path="/" element={<Main item={item} />}></Route>
                     <Route
@@ -168,6 +137,7 @@ const BooglingService = () => {
                         path="/user/modify_result"
                         element={<UserModifyResult />}
                     ></Route>
+                    <Route path="/search" element={<Search item={item} />}></Route>
                     <Route path="*" element={<Main />}></Route>
                 </Routes>
             </BrowserRouter>

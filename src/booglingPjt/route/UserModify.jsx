@@ -28,6 +28,63 @@ const UserModify = ({ userDB, signInedMember }) => {
     setM_phone(loginedMember.m_phone);
   }, []);
 
+  //비밀번호 정규식
+  function CheckPw(str) {
+    var reg1 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+    return reg1.test(str);
+  }
+
+  //휴대폰번호 정규식
+  function checkPhonenumber(str) {
+    // 숫자만 입력시
+    var regExp2 = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/;
+    return regExp2.test(str);
+  }
+
+  //이메일 정규식
+  function checkEmail(str) {
+    var regExp =
+      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+    return regExp.test(str);
+  }
+
+  function isBirthday(dateStr) {
+    var year = Number(dateStr.substr(0, 4)); // 입력한 값의 0~4자리까지 (연)
+    var month = Number(dateStr.substr(4, 2)); // 입력한 값의 4번째 자리부터 2자리 숫자 (월)
+    var day = Number(dateStr.substr(6, 2)); // 입력한 값 6번째 자리부터 2자리 숫자 (일)
+    var today = new Date(); // 날짜 변수 선언
+    var yearNow = today.getFullYear(); // 올해 연도 가져옴
+
+    if (dateStr.length <= 8) {
+      // 연도의 경우 1900 보다 작거나 yearNow 보다 크다면 false를 반환합니다.
+      if (1900 > year || year > yearNow) {
+        return false;
+      } else if (month < 1 || month > 12) {
+        return false;
+      } else if (day < 1 || day > 31) {
+        return false;
+      } else if (
+        (month == 4 || month == 6 || month == 9 || month == 11) &&
+        day == 31
+      ) {
+        return false;
+      } else if (month == 2) {
+        var isleap = year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
+        if (day > 29 || (day == 29 && !isleap)) {
+          return false;
+        } else {
+          return true;
+        } //end of if (day>29 || (day==29 && !isleap))
+      } else {
+        return true;
+      } //end of if
+    } else {
+      //1.입력된 생년월일이 8자 초과할때 :  auth:false
+      return false;
+    }
+  }
+
+  // HANDLER START
   const clickedBtnHandler = (e) => {
     console.log("[UserModify] clickedBtnHandler() CALLED!!");
 
@@ -52,7 +109,6 @@ const UserModify = ({ userDB, signInedMember }) => {
       case RESET_BUTTON:
         console.log("[UserModify] RESET CLICKED!!");
 
-        setM_name("");
         setM_mail("");
         setM_pw("");
         setM_birth("");
@@ -61,7 +117,9 @@ const UserModify = ({ userDB, signInedMember }) => {
         break;
     }
   };
+  // HANDLER END
 
+  // Validate START
   const ValidateUserInputData = () => {
     console.log("[UserModify] ValidateUserInputData() CALLED!!");
 
@@ -73,11 +131,20 @@ const UserModify = ({ userDB, signInedMember }) => {
     } else if (m_mail === "") {
       alert("이메일을 입력해주세요.");
       result = false;
+    } else if (checkEmail(m_mail) === false) {
+      alert("이메일을 형식에 맞게 입력해주세요.");
+      result = false;
     } else if (m_pw === "") {
       alert("비밀번호를 입력해주세요.");
       result = false;
+    } else if (CheckPw(m_pw) === false) {
+      alert("숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요 !");
+      result = false;
     } else if (m_birth === "") {
       alert("생년월일을 입력해주세요.");
+      result = false;
+    } else if (isBirthday(m_birth) === false) {
+      alert("생년월일을 형식에 맞게 입력해주세요.");
       result = false;
     } else if (m_addr === "") {
       alert("주소를 입력해주세요.");
@@ -85,26 +152,31 @@ const UserModify = ({ userDB, signInedMember }) => {
     } else if (m_phone === "") {
       alert("번호를 입력해주세요.");
       result = false;
+    } else if (checkPhonenumber(m_phone) === false) {
+      alert("번호를 형식에 맞게 입력해주세요.");
+      result = false;
     }
     return result;
   };
+  // Validate END
+
   return (
     <section>
       <div class="section_wrap">
         <div class="modify">
-          <div>
-            <input
-              type="text"
-              name="m_name"
-              placeholder="이름"
-              value={m_name}
-              readOnly
-              //   disabled
-              onChange={(e) => {
-                setM_name(e.target.value);
-              }}
-            />
-          </div>
+          {/* <div class="userName"> */}
+          <input
+            type="text"
+            name="m_name"
+            placeholder="이름"
+            value={m_name}
+            readOnly
+            disabled
+            onChange={(e) => {
+              setM_name(e.target.value);
+            }}
+          />
+
           <br />
           <input
             type="email"
@@ -156,20 +228,25 @@ const UserModify = ({ userDB, signInedMember }) => {
               setM_phone(e.target.value);
             }}
           />
+          {/* </div> */}
           <br />
           <div class="btn">
-            <input
-              type="button"
-              value="수정"
-              name={MODIFY_BUTTON}
-              onClick={clickedBtnHandler}
-            />
-            <input
-              type="button"
-              value="취소"
-              name={RESET_BUTTON}
-              onClick={clickedBtnHandler}
-            />
+            <div>
+              <input
+                type="button"
+                value="수정"
+                name={MODIFY_BUTTON}
+                onClick={clickedBtnHandler}
+              />
+            </div>
+            <div>
+              <input
+                type="button"
+                value="취소"
+                name={RESET_BUTTON}
+                onClick={clickedBtnHandler}
+              />
+            </div>
           </div>
         </div>
       </div>

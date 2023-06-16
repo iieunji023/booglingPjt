@@ -2,43 +2,26 @@ import React, { useEffect, useState } from "react";
 const { kakao } = window;
 
 const KakaoMapMain = ({ item }) => {
-  console.log("[KakaoMapMain] item -------> ", item);
-  let addressComposition;
+
+
   let apartComposition;
-  let priceComposition;
-  let addressName = [];
-  let apartName = [];
-  let apartPrice = [];
+  // let apartNameComposition;
 
-  // 도로명 주소만 가져와서 배열로 만들기
-  item.forEach(function (item) {
-    item.forEach(function (item2) {
-      addressComposition = "부산광역시" + item2.법정동 + " " + item2.지번 + " " + item2.아파트;
-      addressName.push(addressComposition);
-      // console.log("첫번째로 한것--------->", arr)
+  const addressName = [];
+
+  console.log("---------->", item);
+
+  if (item) {
+    item.forEach(function (item) {
+      item.forEach(function (item2) {
+        apartComposition = "부산광역시 " + item2.도로명 + item2.도로명건물본번호코드;
+        addressName.push(apartComposition);
+        // console.log("아파트 가격과 거래금액------>", apartNameAndPrice)
+      });
     });
-  });
+  }
 
-  // console.log("주소가 제대로 왔나----------->", addressName)
-
-  // 아파트이름만 가져와서 배열로 만들기
-  item.forEach(function (item) {
-    item.forEach(function (item2) {
-      apartComposition = item2.아파트;
-      apartName.push(apartComposition);
-      // console.log("첫번째로 한것--------->", arr)
-    });
-  });
-
-  // 아파트 가격만 가져와서 배열로 만들기
-  item.forEach(function (item) {
-    item.forEach(function (item2) {
-      priceComposition = item2.거래금액 + "100";
-      apartPrice.push(priceComposition);
-      // console.log("첫번째로 한것--------->", arr)
-    });
-  });
-
+  console.log("--------> ")
 
 
   useEffect(() => {
@@ -48,6 +31,7 @@ const KakaoMapMain = ({ item }) => {
       level: 7, // 지도의 확대 레벨
     };
     var map = new kakao.maps.Map(mapContainer, mapOption);
+
     var clusterer = new kakao.maps.MarkerClusterer({
       map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
       averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
