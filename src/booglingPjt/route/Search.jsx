@@ -1,132 +1,84 @@
 import React, { useEffect, useState } from "react";
 import "./css/search.css";
 import "./css/common.css";
-import axios from "axios";
+import SearchList from "./SearchList";
+import { useLocation } from "react-router-dom";
 
-const serviceKey =
-  "IyQg8I2dXbv8kkUs2Gki35cm64Cu%2BxaUWkNCsFipH3WWV6%2FiZD4HHrq4v%2Bykezvft92l9H5S0zULIYrQonfaUA%3D%3D"; // 서비스키(필수)
-const pageNo = 1; // 페이지 번호(옵션)
-const numOfRows = 3; // 한 페이지 결과 수(옵션)
 
-const Search = () => {
-  const [lawdCd, setLawdCd] = useState("");
-  const [dealYMD, setdealYMD] = useState("");
-  const [item, setItem] = useState([]); //중복값이 있는 아파트명 목록
+const Search = ({ item }) => {
+
+  const location = useLocation();
+  let region = location.state.region // [Nav] URL에서 전달된 지역 정보
+  let searchValue = location.state.searchValue // [Nav] URL에서 전달된 검색어
+
+  console.log('[Search] value----> ', region);
+  console.log('[Search] searchValue----> ', searchValue);
+  console.log('[Search] item =====> ', item)
+
+
+  // 원본 데이터인 item을 분해해서 원하는 형태로 AptOriginalArray에 담기
+  let AptOriginalArray = []
+  item.forEach(function (item) {
+    item.forEach(function (item2) {
+      AptOriginalArray.push({
+        AptName: item2.아파트,
+        AptAdress: item2.도로명 + item2.도로명건물본번호코드,
+        AptPrice: item2.거래금액,
+        AptArea: item2.전용면적,
+        AptFloor: item2.층,
+        AptRegion: item2.지역코드,
+      });
+    });
+  });
+
+  // 검색어로 필터링된 아파트 목록 생성
+  // AptOriginalArray을 분해해서 "[Nav] URL에서 전달된 검색어" 와 일치하는 데이터만 AptFilteredArray에 push
+  let AptFilteredArray = []
+  if (searchValue != '') {
+    const filteredsearchValue = AptOriginalArray.filter((ele) => ele.AptName == searchValue);
+    console.log('[Search] filteredsearchValue: ', filteredsearchValue)
+    filteredsearchValue.forEach(function (filteredsearchValue) {
+      AptFilteredArray.push({
+        AptName: filteredsearchValue.AptName,
+        AptAdress: filteredsearchValue.AptAdress,
+        AptPrice: filteredsearchValue.AptPrice,
+        AptArea: filteredsearchValue.AptArea,
+        AptFloor: filteredsearchValue.AptFloor,
+      });
+    })
+  }
+  // 지역 코드로 필터링된 아파트 목록 생성
+  // AptOriginalArray을 분해해서 "[Nav] URL에서 전달된 지역 정보" 와 일치하는 데이터만 AptFilteredArray에 push
+  if (region != '00000') {
+    const filteredregion = AptOriginalArray.filter((ele) => ele.AptRegion == region);
+    console.log('[Search] filteredregion: ', filteredregion)
+    filteredregion.forEach(function (filteredregion) {
+      AptFilteredArray.push({
+        AptName: filteredregion.AptName,
+        AptAdress: filteredregion.AptAdress,
+        AptPrice: filteredregion.AptPrice,
+        AptArea: filteredregion.AptArea,
+        AptFloor: filteredregion.AptFloor,
+      });
+    });
+  }
+
 
   useEffect(() => {
-    console.log("useEffect!!");
 
-    getRemoteData();
-  }, [lawdCd]);
+    console.log('[Search] AptOriginalArray =====> ', AptOriginalArray)
+    console.log('[Search] AptFilteredArray =====> ', AptFilteredArray)
 
-  // let LAWD_CD = `26${lawdCd}0`;           // 지역코드(필수)
-  // let DEAL_YMD = '201512';                // 계약년월(필수)
-
-  // Handler START
-  const lawdCdChangeHandler = (e) => {
-    console.log("[Search] lawdCdChangeHandler() CALLED!!");
-
-    setLawdCd(() => "26" + e.target.value + "0");
-  };
-  // Handler END
-
-  async function getData(y, m) {
-    console.log("[Search] getData() CALLED!!");
-
-    try {
-      let deal_ymd = (y + m) * 1; // 년도월, ex) 2022년 01월 == 202201
-
-      let url = `http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev?serviceKey=${serviceKey}&pageNo=${pageNo}&numOfRows=${numOfRows}&LAWD_CD=${lawdCd}&DEAL_YMD=${deal_ymd}`;
-      const response = await axios.get(url);
-      // console.log('response ---> \n', response.data.response.body.items.item);
-
-      let items = response.data.response.body.items.item;
-
-      console.log(items);
-
-      // items.map((item, idx) => {
-      //     console.log('idx  ---> ', idx);
-      //     console.log('item ---> ', item);
-      //     console.log('item ---> ', item.아파트);
-      // });
-    } catch (error) {
-      console.log(error);
-    } finally {
-      console.log("finally");
-    }
-  }
-
-  async function getRemoteData() {
-    console.log("[Search] getRemoteData() CALLED!!");
-
-    let year = ["2020"];
-    let month = ["11"];
-
-    try {
-      year.map(function (y) {
-        month.map(function (m) {
-          getData(y, m);
-        });
-      });
-    } catch (error) {
-      console.log(error);
-    } finally {
-      console.log("finally");
-    }
-  }
+  }, [])
 
   return (
-    <div id="wrap">
-      <div className="bar">
-        <ul className="bar_ul">
-          <li className="sign_in">
-            <a href="">로그인</a>
-          </li>
-          <li className="sign_up">
-            <a href="">회원가입</a>
-          </li>
-          <li className="modify">
-            <a href="">회원정보수정</a>
-          </li>
+    <section>
 
-          <li className="btn">
-            <a href="#none">찾기</a>
-          </li>
-
-          <li className="region_settings">
-            <span>지역설정</span>
-            <select name="region">
-              <option>지역설정</option>
-              <option value="11">중구</option>
-              <option value="14">서구</option>
-              <option value="17">동구</option>
-              <option value="20">영도구</option>
-              <option value="23">부산진구</option>
-              <option value="26">동래구</option>
-              <option value="29">남구</option>
-              <option value="32">북구</option>
-              <option value="35">해운대구</option>
-              <option value="38">사하구</option>
-              <option value="41">금정구</option>
-              <option value="44">강서구</option>
-              <option value="47">연제구</option>
-              <option value="50">수영구</option>
-              <option value="53">사상구</option>
-              <option value="71">기장군</option>
-            </select>
-          </li>
-          <li className="apt_search">
-            <a href="#none">검색</a>
-            <input type="text" placeholder="아파트 명" />
-          </li>
-        </ul>
-      </div>
-
-      <div className="main">
+      <div className="search_main">
         <ul>
           <li className="search_result">
-            <div className="title">"아파트명" 검색결과</div>
-            <div className="list">
+            <div className="search_title">검색결과</div>
+            <div className="search_list">
               <ul className="list_name">
                 <li>아파트</li>
                 <li>주소</li>
@@ -134,15 +86,19 @@ const Search = () => {
                 <li className="area">평수</li>
                 <li className="floor">층수</li>
               </ul>
-              <ul>
-                <li>
-                  <a href="#none">{}</a>
-                </li>
-                <li>{}</li>
-                <li>{}</li>
-                <li className="area">{}</li>
-                <li className="floor">{}</li>
-              </ul>
+              {
+                AptFilteredArray.map((ele, idx) => {
+                  return (
+                    <SearchList
+                      key={idx}
+                      AptName={ele.AptName}
+                      AptAdress={ele.AptAdress}
+                      AptPrice={ele.AptPrice}
+                      AptArea={ele.AptArea}
+                      AptFloor={ele.AptFloor} />
+                  )
+                })
+              }
             </div>
 
             <div className="page">
@@ -239,7 +195,7 @@ const Search = () => {
           </li>
         </ul>
       </div>
-    </div>
+    </section>
   );
 };
 

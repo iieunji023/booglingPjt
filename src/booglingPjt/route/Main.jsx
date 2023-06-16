@@ -3,9 +3,7 @@ import KakaoMapMain from "../KakaoMapMain";
 import { Link, useNavigate } from "react-router-dom";
 import './css/main.css';
 
-const Main = () => {
-    
-
+const Main = ({ item }) => {
     return (
         <main>
             <div className="main">
@@ -148,7 +146,7 @@ const Main = () => {
                     </li>
 
                     <li className="map">
-                        <KakaoMapMain />
+                        <KakaoMapMain item={item}/>
                     </li>
 
                     <li className="view">
