@@ -56,70 +56,72 @@
       <div class="detail">
         <div class="detail_wrap">
           <div class="detail_title">
-            <p>센텀아파트</p>
+            <ul>
+              <li><p>센텀아파트</p></li>
+              <li><input type="button" value="토글" /></li>
+            </ul>
           </div>
           <div class="detail_address">
             <p>부산시 해운대구</p>
           </div>
           <div class="detail_list">
-            <table>
-              <tbody>
-                <tr>
-                  <td>계약일</td>
-                  <td>거래가격</td>
-                  <td>평수</td>
-                  <td>층수</td>
-                </tr>
-                <tr>
-                  <td>23.05.02</td>
-                  <td>5억 2000</td>
-                  <td>52</td>
-                  <td>25</td>
-                </tr>
+            <div class="table">
+              <ul>
+                <li>계약일</li>
+                <li>거래가격</li>
+                <li>평수</li>
+                <li>층수</li>
+              </ul>
 
-                <tr>
-                  <td>23.11.23</td>
-                  <td>11억 2300</td>
-                  <td>63</td>
-                  <td>11</td>
-                </tr>
+              <ul>
+                <li>23.05.02</li>
+                <li>5억 2000</li>
+                <li>52</li>
+                <li>25</li>
+              </ul>
 
-                <tr>
-                  <td>23.10.23</td>
-                  <td>10억 2300</td>
-                  <td>53</td>
-                  <td>10</td>
-                </tr>
+              <ul>
+                <li>23.11.23</li>
+                <li>11억 2300</li>
+                <li>63</li>
+                <li>11</li>
+              </ul>
 
-                <tr>
-                  <td>23.05.10</td>
-                  <td>5억 1000</td>
-                  <td>51</td>
-                  <td>5</td>
-                </tr>
+              <ul>
+                <li>23.10.23</li>
+                <li>10억 2300</li>
+                <li>53</li>
+                <li>10</li>
+              </ul>
 
-                <tr>
-                  <td>23.05.10</td>
-                  <td>5억 1000</td>
-                  <td>51</td>
-                  <td>5</td>
-                </tr>
+              <ul>
+                <li>23.05.10</li>
+                <li>5억 1000</li>
+                <li>51</li>
+                <li>5</li>
+              </ul>
 
-                <tr>
-                  <td>23.05.10</td>
-                  <td>5억 1000</td>
-                  <td>51</td>
-                  <td>5</td>
-                </tr>
+              <ul>
+                <li>23.05.10</li>
+                <li>5억 1000</li>
+                <li>51</li>
+                <li>5</li>
+              </ul>
 
-                <tr>
-                  <td>23.05.10</td>
-                  <td>5억 1000</td>
-                  <td>51</td>
-                  <td>5</td>
-                </tr>
-              </tbody>
-            </table>
+              <ul>
+                <li>23.05.10</li>
+                <li>5억 1000</li>
+                <li>51</li>
+                <li>5</li>
+              </ul>
+
+              <ul>
+                <li>23.05.10</li>
+                <li>5억 1000</li>
+                <li>51</li>
+                <li>5</li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="search">
@@ -203,3 +205,18 @@
     <td></td>
   </tr>
 </template> -->
+
+<!-- <script>
+  $('input[id="toggle"]').change(function () {
+    var value = $(this).val();
+    var checked = $(this).prop("checked");
+    var toggle_state;
+    if (checked) {
+      document.getElementById("toggle_state").innerHTML = "on";
+      toggle_state = "on";
+    } else {
+      document.getElementById("toggle_state").innerHTML = "off";
+      toggle_state = "off";
+    }
+  });
+</script> -->

@@ -1,4 +1,4 @@
-#wrap > section > div.section_wrap > div.sign_in {
+section > div.section_wrap > div.sign_in {
   /* position: relative; */
   margin: 50px auto;
   width: 400px;
@@ -12,7 +12,7 @@
   padding: 50px;
 }
 
-#wrap > section > div.section_wrap > div.sign_in input {
+section > div.section_wrap > div.sign_in input {
   padding: 15px;
   border-radius: 7px;
   border: 1px solid #dadada;
@@ -21,7 +21,7 @@
   /* margin: 5px; */
 }
 
-#wrap > section > div.section_wrap > div.sign_in input[type="button"] {
+section > div.section_wrap > div.sign_in input[type="button"] {
   background-color: #ebe7e7;
   /* width: 220px; */
   text-align: center;

@@ -20,10 +20,12 @@ const Nav = forwardRef(({ signInedMember, userDB }, ref) => {
     setLoginedMember(signInedMember.current);
   };
 
+  // Nav의 changeLoginMember 함수를 하위에서 사용할 수 있게 하기 위함
   useImperativeHandle(ref, () => ({
     changeLoginMember,
   }));
 
+  // SIGNOUT HANDLER
   const signOutClickHandler = () => {
     console.log("[Nav] signOutClickHandler() CALLED!!");
 
@@ -31,6 +33,7 @@ const Nav = forwardRef(({ signInedMember, userDB }, ref) => {
     setLoginedMember("");
   };
 
+  // USERMODIFY HANDLER
   const modifyAccountClickHandler = () => {
     console.log("[Nav] modifyAccountClickHandler() CALLED!!");
   };
@@ -43,7 +46,7 @@ const Nav = forwardRef(({ signInedMember, userDB }, ref) => {
             {loginedMember === "" ? (
               <Link to="/user/sign_Up">회원가입</Link>
             ) : (
-              <span>[Welcom {loginedMember}]</span>
+              <span>[Welcome {loginedMember}]</span>
             )}
           </li>
           <li className="sign_in">

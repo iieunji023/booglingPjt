@@ -12,27 +12,28 @@ const SignIn = ({ userDB, signInedMember, setLoginedSession }) => {
 
   const navigate = useNavigate();
 
+  // HANDLER START
   const ClickedBtnHandler = (e) => {
     console.log("[SignIn] ClickedBtnHandler() CALLED!!");
 
     if (userDB.has(m_id) && userDB.get(m_id).m_pw === m_pw) {
       console.log("[UserSignIn] SIGN-IN SUCCESS!!");
 
-      alert("SIGN-IN SUCCESS!!");
+      // alert("SIGN-IN SUCCESS!!");
 
       signInedMember.current = m_id;
       setLoginedSession();
 
-      navigate("/user/sign_in_result");
-    } else {
+      navigate("/");
+    } else if (m_pw !== setM_pw) {
       console.log("[UserSignIn] SIGN-IN FAIL!!");
 
       setM_id("");
       setM_pw("");
-
-      alert("SIGN-IN FAIL!!");
+      return alert("비밀번호가 일치하지 않습니다.");
     }
   };
+  // HANDLER END
 
   return (
     <section>

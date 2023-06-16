@@ -81,6 +81,13 @@
   font-weight: bold;
 }
 
+#wrap div.detail_title > ul > li {
+  margin-right: 15px;
+}
+.btn i:hover {
+  cursor: pointer;
+}
+
 #wrap div.detail_address {
   font-size: 1.2em;
   padding: 15px;
@@ -92,18 +99,20 @@
   text-align: center;
 }
 
-#wrap div.detail_list table {
+#wrap div.detail_list > div.table {
   width: 100%;
   border-collapse: collapse;
   margin-left: auto;
   margin-right: auto;
   border-spacing: 0px 10px;
+  padding: 20px;
 }
 
-#wrap div.detail_list table td {
+#wrap div.detail_list ul > li {
   border-bottom: 1px solid #dadada;
   padding: 10px;
   font-size: 1.2em;
+  padding: 35px;
 }
 
 #wrap div.menu_bar {
@@ -111,6 +120,7 @@
   border-radius: 7px;
   margin-top: 25px;
   padding: 15px;
+  margin-top: 100px;
 }
 
 #wrap div.menu_bar p {
@@ -120,6 +130,7 @@
 
 #wrap div.search_btn {
   margin-top: 9px;
+  height: 70px;
 }
 
 #wrap div.search_btn a {
@@ -130,7 +141,7 @@
 }
 
 #wrap > div.detail > div img {
-  margin-top: 30px;
-  min-width: 300px;
-  max-width: 300px;
+  margin-top: 50px;
+  min-width: 400px;
+  max-width: 400px;
 }

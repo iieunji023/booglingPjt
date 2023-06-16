@@ -129,7 +129,11 @@ const BooglingService = () => {
     <>
       <BrowserRouter>
         <Header />
-        <Nav />
+        <Nav
+          ref={changeLoginStatus}
+          signInedMember={signInedMember}
+          userDB={userDB}
+        />
         <Routes>
           <Route path="/" element={<Main />}></Route>
           <Route
