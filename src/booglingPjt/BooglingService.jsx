@@ -16,6 +16,9 @@ import Search from "./route/Search";
 
 import axios from "axios";
 import KakaoMapMain from "./KakaoMapMain";
+import Favorites from "./route/Favorites";
+import AptDetail from "./route/AptDetail";
+import AptPriceRank from "./route/AptPriceRank";
 
 // const serviceKey ="IyQg8I2dXbv8kkUs2Gki35cm64Cu%2BxaUWkNCsFipH3WWV6%2FiZD4HHrq4v%2Bykezvft92l9H5S0zULIYrQonfaUA%3D%3D"; // (필수 트래픽 초과시 다른 서비스키 이용바람)
 const serviceKey =
@@ -25,6 +28,7 @@ const pageNo = 1; // 페이지 번호(옵션)
 const numOfRows = 10; // 한 페이지 결과 수(옵션)
 
 const BooglingService = () => {
+  const [aptInfo, setAptInfo] = useState([]);
   const [userDB, setUserDB] = useState(new Map()); // 사용자 데이터베이스를 관리하기 위한 상태 변수
   const signInedMember = useRef(""); // 현재 로그인한 회원을 저장하기 위한 참조 변수
   const changeLoginStatus = useRef(""); // 로그인 상태 변경 함수를 호출하기 위한 참조 변수
@@ -41,6 +45,8 @@ const BooglingService = () => {
     console.log("[BooglingService] useEffect1!!");
 
     getRemoteData(); // 원격 데이터를 가져오기 위한 함수 호출
+
+
   }, []);
 
   async function getData(y, m, r) {
@@ -90,6 +96,7 @@ const BooglingService = () => {
       console.log("finally");
     }
   }
+  
 
   return (
     <>
@@ -129,6 +136,10 @@ const BooglingService = () => {
             element={<UserModifyResult />}
           ></Route>
           <Route path="/search" element={<Search item={item} />}></Route>
+          <Route path="/user/favorites" element={<Favorites />}></Route>
+          <Route path="/apt_detail/:id" element={<AptDetail item={item} 
+                                                        userDB={userDB} signInedMember={signInedMember} aptInfo={aptInfo}/>}></Route>
+          <Route element={<AptPriceRank setAptInfo={setAptInfo} />}></Route>
           <Route path="*" element={<Main />}></Route>
         </Routes>
       </BrowserRouter>

@@ -74,11 +74,11 @@ const Search = ({ item }) => {
   return (
     <section>
 
-      <div className="main">
+      <div className="search_main">
         <ul>
           <li className="search_result">
-            <div className="title">검색결과</div>
-            <div className="list">
+            <div className="search_title">검색결과</div>
+            <div className="search_list">
               <ul className="list_name">
                 <li>아파트</li>
                 <li>주소</li>
