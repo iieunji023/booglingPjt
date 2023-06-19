@@ -23,10 +23,11 @@ import AptPriceRank from "./route/AptPriceRank";
 
 // const serviceKey ="IyQg8I2dXbv8kkUs2Gki35cm64Cu%2BxaUWkNCsFipH3WWV6%2FiZD4HHrq4v%2Bykezvft92l9H5S0zULIYrQonfaUA%3D%3D"; // (필수 트래픽 초과시 다른 서비스키 이용바람)
 const serviceKey =
-  "4QZ4e0ftFVHceln9FiZ6yhc%2BsY3bdDiyce%2BULzBK87k5Hnrs0B10zEajsBdqg5TcQgPo0dz5lzbmrkev1dZXWg%3D%3D"; // (필수)
+  // "4QZ4e0ftFVHceln9FiZ6yhc%2BsY3bdDiyce%2BULzBK87k5Hnrs0B10zEajsBdqg5TcQgPo0dz5lzbmrkev1dZXWg%3D%3D"; // (필수)
+  "RvgsyTk%2Flok04ktoqe2PPV7OVvyVTLa7IwjiW2%2F0FQTxVKe8SjNYZUpLpn3WFYskzMW0jsHeiehpwUeVIJnLkw%3D%3D";
 
 const pageNo = 1; // 페이지 번호(옵션)
-const numOfRows = 10; // 한 페이지 결과 수(옵션)
+const numOfRows = 30; // 한 페이지 결과 수(옵션)
 
 const BooglingService = () => {
   const [aptInfo, setAptInfo] = useState([]);
@@ -46,8 +47,6 @@ const BooglingService = () => {
     console.log("[BooglingService] useEffect1!!");
 
     getRemoteData(); // 원격 데이터를 가져오기 위한 함수 호출
-
-
   }, []);
 
   async function getData(y, m, r) {
@@ -57,9 +56,9 @@ const BooglingService = () => {
       let deal_ymd = (y + m) * 1; // 년도와 월을 조합하여 거래 년월을 생성 (예: 2022년 01월 -> 202201)
       let region = `26${r}0`; // 지역 코드 생성
 
-            let url = `&serviceKey=${serviceKey}&pageNo=${pageNo}&numOfRows=${numOfRows}&LAWD_CD=${region}&DEAL_YMD=${deal_ymd}`;
-            const response = await axios.get('/api'+url); // API를 호출하여 데이터 가져오기
-            // console.log('response ---> \n', response.data.response.body.items.item);
+      let url = `&serviceKey=${serviceKey}&pageNo=${pageNo}&numOfRows=${numOfRows}&LAWD_CD=${region}&DEAL_YMD=${deal_ymd}`;
+      const response = await axios.get("/api" + url); // API를 호출하여 데이터 가져오기
+      // console.log('response ---> \n', response.data.response.body.items.item);
 
       let items = response.data.response.body.items.item;
       item.push(items); // 가져온 데이터를 목록에 추가
@@ -78,9 +77,24 @@ const BooglingService = () => {
 
     let year = ["2022", "2023"];
     let month = ["01"];
-    // let region = ["11","14","17","20","23","26","29","32","35","38","41","44","47","50","53","71",];
-    // let region = ["32","35","38","53","17","20"]// 조회할 지역 코드
-    let region = ["32","35","38"]// 조회할 지역 코드
+    let region = [
+      // "11",
+      // "14",
+      "17",
+      "20",
+      // "23",
+      // "26",
+      // "29",
+      "32",
+      "35",
+      "38",
+      // "41",
+      // "44",
+      // "47",
+      // "50",
+      "53",
+      // "71",
+    ];
 
     try {
       year.map(function (y) {
@@ -96,7 +110,6 @@ const BooglingService = () => {
       console.log("finally");
     }
   }
-  
 
   return (
     <>
@@ -137,8 +150,17 @@ const BooglingService = () => {
           ></Route>
           <Route path="/search" element={<Search item={item} />}></Route>
           <Route path="/user/favorites" element={<Favorites />}></Route>
-          <Route path="/apt_detail/:id" element={<AptDetail item={item} 
-                                                        userDB={userDB} signInedMember={signInedMember} aptInfo={aptInfo}/>}></Route>
+          <Route
+            path="/apt_detail/:id"
+            element={
+              <AptDetail
+                item={item}
+                userDB={userDB}
+                signInedMember={signInedMember}
+                aptInfo={aptInfo}
+              />
+            }
+          ></Route>
           <Route element={<AptPriceRank setAptInfo={setAptInfo} />}></Route>
           <Route path="*" element={<Main />}></Route>
         </Routes>
