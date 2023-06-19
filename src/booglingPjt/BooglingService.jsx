@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect, useRef } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -15,7 +16,7 @@ import UserModifyResult from "./route/UserModifyResult";
 import Search from "./route/Search";
 
 import axios from "axios";
-import KakaoMapMain from "./KakaoMapMain";
+// import KakaoMapMain from "./KakaoMapMain";
 
 // const serviceKey ="IyQg8I2dXbv8kkUs2Gki35cm64Cu%2BxaUWkNCsFipH3WWV6%2FiZD4HHrq4v%2Bykezvft92l9H5S0zULIYrQonfaUA%3D%3D"; // (필수 트래픽 초과시 다른 서비스키 이용바람)
 const serviceKey = "4QZ4e0ftFVHceln9FiZ6yhc%2BsY3bdDiyce%2BULzBK87k5Hnrs0B10zEajsBdqg5TcQgPo0dz5lzbmrkev1dZXWg%3D%3D"; // (필수)
@@ -27,6 +28,7 @@ const BooglingService = () => {
     const [userDB, setUserDB] = useState(new Map());    // 사용자 데이터베이스를 관리하기 위한 상태 변수
     const signInedMember = useRef("");                  // 현재 로그인한 회원을 저장하기 위한 참조 변수
     const changeLoginStatus = useRef("");               // 로그인 상태 변경 함수를 호출하기 위한 참조 변수
+    const [item, setItem] = useState([]); //중복값이 있는 아파트명 목록
 
     const setLoginedSession = () => {
         console.log("[BooglingService] setLoginedSesstion() CALLED!!");
@@ -34,7 +36,6 @@ const BooglingService = () => {
         changeLoginStatus.current.changeLoginMember(signInedMember); // 로그인된 회원을 변경하도록 로그인 상태 변경 함수 호출
     };
 
-    const [item, setItem] = useState([]); //중복값이 있는 아파트명 목록
 
     useEffect(() => {
         console.log("[BooglingService] useEffect1!!");
@@ -49,8 +50,8 @@ const BooglingService = () => {
             let deal_ymd = (y + m) * 1; // 년도와 월을 조합하여 거래 년월을 생성 (예: 2022년 01월 -> 202201)
             let region = `26${r}0`; // 지역 코드 생성
 
-            let url = `http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev?serviceKey=${serviceKey}&pageNo=${pageNo}&numOfRows=${numOfRows}&LAWD_CD=${region}&DEAL_YMD=${deal_ymd}`;
-            const response = await axios.get(url); // API를 호출하여 데이터 가져오기
+            let url = `&serviceKey=${serviceKey}&pageNo=${pageNo}&numOfRows=${numOfRows}&LAWD_CD=${region}&DEAL_YMD=${deal_ymd}`;
+            const response = await axios.get('/api'+url); // API를 호출하여 데이터 가져오기
             // console.log('response ---> \n', response.data.response.body.items.item);
 
             let items = response.data.response.body.items.item;

@@ -10,6 +10,8 @@ const Search = ({ item }) => {
   const location = useLocation();
   let region = location.state.region // [Nav] URL에서 전달된 지역 정보
   let searchValue = location.state.searchValue // [Nav] URL에서 전달된 검색어
+  // console.log('[Search] location----> ', location);
+  // console.log('[Search] location.state----> ', location.state);
 
   console.log('[Search] value----> ', region);
   console.log('[Search] searchValue----> ', searchValue);
