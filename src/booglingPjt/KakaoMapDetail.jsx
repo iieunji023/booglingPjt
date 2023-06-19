@@ -2,55 +2,106 @@ import React, { useEffect } from "react";
 
 const { kakao } = window;
 
-const KakaoMapDetail = () => {
+const KakaoMapDetail = ({ AptFilteredArray }) => {
+  let apartComposition;
+  const addressName = [];
+
+  // AptFilteredArray가 존재한다면 배열을 순회하며 addressName 배열에 apartComposition(주소)를 추가
+  // apartComposition 변수에 주소 할당
+  if (AptFilteredArray) {
+    AptFilteredArray.forEach(function (item) {
+      AptFilteredArray.forEach(function (item2) {
+        apartComposition =
+          "부산광역시 " +
+          AptFilteredArray[0].AptAdress +
+          " " +
+          AptFilteredArray[0].AptName;
+        addressName.push(apartComposition);
+      });
+    });
+  }
+  console.log("AptFilteredArray", AptFilteredArray);
+
   useEffect(() => {
-    var container = document.getElementById("map");
-    var options = {
-      center: new kakao.maps.LatLng(33.450701, 126.570667),
+    const mapContainer = document.getElementById("map");
+    const mapOption = {
+      center: new kakao.maps.LatLng(35.13417, 129.11397), // Set the desired center coordinates for Busan
       level: 3,
     };
-    var map = new kakao.maps.Map(container, options);
-    // 마커를 표시할 위치와 title 객체 배열입니다
-    var positions = [
-      {
-        title: "카카오",
-        latlng: new kakao.maps.LatLng(33.450705, 126.570677),
-      },
-      {
-        title: "생태연못",
-        latlng: new kakao.maps.LatLng(33.450936, 126.569477),
-      },
-      {
-        title: "텃밭",
-        latlng: new kakao.maps.LatLng(33.450879, 126.56994),
-      },
-      {
-        title: "근린공원",
-        latlng: new kakao.maps.LatLng(33.451393, 126.570738),
-      },
-    ];
 
-    // 마커 이미지의 이미지 주소입니다
-    var imageSrc =
-      "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+    // 지도를 생성한다.
+    const map = new kakao.maps.Map(mapContainer, mapOption);
 
-    for (var i = 0; i < positions.length; i++) {
-      // 마커 이미지의 이미지 크기 입니다
-      var imageSize = new kakao.maps.Size(24, 35);
+    // var data = [
+    //   [
+    //     35.156005,
+    //     129.059799,
+    //     '<div style="padding:5px;">내용1 </div>',
+    //     35.156005,
+    //     129.059799,
+    //     '<div style="padding:5px;">내용2 </div>',
+    //     35.156005,
+    //     129.059799,
+    //     '<div style="padding:5px;">내용3 </div>',
+    //   ],
+    // ];
 
-      // 마커 이미지를 생성합니다
-      var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+    // var markers = [];
+    // for (var i = 0; i < data.length; i++) {
+    // 지도에 마커를 생성하고 표시한다.
+    var marker = new kakao.maps.Marker({
+      position: new kakao.maps.LatLng(35.156005, 129.059799),
+      map: map, // 마커를 표시할 지도 객체
+    });
 
-      // 마커를 생성합니다
-      var marker = new kakao.maps.Marker({
-        map: map, // 마커를 표시할 지도
-        position: positions[i].latlng, // 마커를 표시할 위치
-        title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-        image: markerImage, // 마커 이미지
+    // var iwContent = '<div style="padding:5px;">내용 </div>';
+
+    // // 인포윈도우를 생성합니다
+    // var infowindow = new kakao.maps.InfoWindow({
+    //   // position: iwPosition,
+    //   content: iwContent,
+    // });
+
+    // // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+    // infowindow.open(map, marker);
+
+    const geocoder = new kakao.maps.services.Geocoder();
+
+    // 주소 검색
+    const searchAddress = (address) => {
+      geocoder.addressSearch(address, function (result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+          const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+          const marker = new kakao.maps.Marker({
+            map: map,
+            position: coords,
+          });
+
+          // 인포윈도우를 생성합니다. content: 표시할 내용 html 형식으로 지정합니다.
+          const infowindow = new kakao.maps.InfoWindow({
+            content: `<div style="width:150px;text-align:center;padding:6px 0;">${addressName}</div>`,
+          });
+
+          // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다.
+          infowindow.open(map, marker);
+
+          // 지도의 중심을 coords 좌표로 이동합니다.
+          map.setCenter(coords);
+        }
       });
+    };
+
+    // for문을 통해 addressName 배열의 각 주소에 대해 searchAddress 함수를 호출합니다.
+    // addressName 배열에 저장된 각 주소에 대해 지도에 마커와 인포윈도우를 표시하게 됩니다.
+    for (let i = 0; i < addressName.length; i++) {
+      searchAddress(addressName[i]);
     }
-    // marker.setMap(map);
-  }, []);
+
+    // 컴포넌트가 unmount될 때 지도 객체 제거
+    return () => {
+      kakao.maps.event.removeListener(map, "bounds_changed");
+    };
+  }, [addressName]);
 
   return <li id="map" style={{ width: "500px", height: "500px" }}></li>;
 };
