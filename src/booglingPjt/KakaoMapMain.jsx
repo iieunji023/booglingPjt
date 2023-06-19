@@ -53,10 +53,20 @@ const KakaoMapMain = ({ item }) => {
             content: `<div style="width:150px;text-align:center;padding:6px 0;">${addressName[i]}</div>`
           });
           infowindow.open(map, marker);
-          map.setCenter(coords);
+          // map.setCenter(coords);
         }
       });
     }
+    if (addressName.length > 0) {
+      // 첫 번째 마커의 좌표로 지도의 중심을 설정합니다.
+      geocoder.addressSearch(addressName[0], function (result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+          var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+          map.panTo(coords); // 지도의 중심을 해당 마커 위치로 이동합니다.
+        }
+      });
+    } // 
+
   }, [addressName]);
 
   return <li id="map" style={{ width: "800px", height: "725px" }}></li>;
