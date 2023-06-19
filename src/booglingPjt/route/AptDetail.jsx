@@ -78,12 +78,7 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
       return setFavoriteBtn(true)
     }
   };
-
-  let aptTitleName = AptFilteredArray.map((item) => item.AptName);
-  console.log("이름------------->", aptTitleName);
-  let aptTitleAddress = AptFilteredArray.map((item) => item.AptAdress);
-  console.log("이름------------->", aptTitleAddress);
-
+  
   return (
     <section>
       <div className="main">
