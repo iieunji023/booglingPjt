@@ -1,5 +1,7 @@
+/* eslint-disable */
 import React, { useState, useEffect, useRef } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import Header from "./Header";
 import Nav from "./Nav";
 import "./css/common.css";
@@ -17,13 +19,17 @@ import axios from "axios";
 import KakaoMapMain from "./KakaoMapMain";
 import Favorites from "./route/Favorites";
 import AptDetail from "./route/AptDetail";
+import AptPriceRank from "./route/AptPriceRank";
 
+// const serviceKey ="IyQg8I2dXbv8kkUs2Gki35cm64Cu%2BxaUWkNCsFipH3WWV6%2FiZD4HHrq4v%2Bykezvft92l9H5S0zULIYrQonfaUA%3D%3D"; // (필수 트래픽 초과시 다른 서비스키 이용바람)
 const serviceKey =
-    "0TEjPSWe8Amdu9ZJNlmbFk6NN2BTXyQ%2FmbjKh0CNdzVi1HdozklmwK1bMRH%2BwqQ9v9d0Tz7p%2FSquZPjNdufLdg%3D%3D"; // 서비스키(필수)
+    "4QZ4e0ftFVHceln9FiZ6yhc%2BsY3bdDiyce%2BULzBK87k5Hnrs0B10zEajsBdqg5TcQgPo0dz5lzbmrkev1dZXWg%3D%3D"; // (필수)
+
 const pageNo = 1; // 페이지 번호(옵션)
 const numOfRows = 30; // 한 페이지 결과 수(옵션)
 
 const BooglingService = () => {
+    const [aptInfo, setAptInfo] = useState([]);
     const [userDB, setUserDB] = useState(new Map()); // 사용자 데이터베이스를 관리하기 위한 상태 변수
     const signInedMember = useRef(""); // 현재 로그인한 회원을 저장하기 위한 참조 변수
     const changeLoginStatus = useRef(""); // 로그인 상태 변경 함수를 호출하기 위한 참조 변수
@@ -40,6 +46,8 @@ const BooglingService = () => {
         console.log("[BooglingService] useEffect1!!");
 
         getRemoteData(); // 원격 데이터를 가져오기 위한 함수 호출
+
+
     }, []);
 
     async function getData(y, m, r) {
@@ -49,8 +57,8 @@ const BooglingService = () => {
             let deal_ymd = (y + m) * 1; // 년도와 월을 조합하여 거래 년월을 생성 (예: 2022년 01월 -> 202201)
             let region = `26${r}0`; // 지역 코드 생성
 
-            let url = `http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev?serviceKey=${serviceKey}&pageNo=${pageNo}&numOfRows=${numOfRows}&LAWD_CD=${region}&DEAL_YMD=${deal_ymd}`;
-            const response = await axios.get(url); // API를 호출하여 데이터 가져오기
+            let url = `&serviceKey=${serviceKey}&pageNo=${pageNo}&numOfRows=${numOfRows}&LAWD_CD=${region}&DEAL_YMD=${deal_ymd}`;
+            const response = await axios.get('/api' + url); // API를 호출하여 데이터 가져오기
             // console.log('response ---> \n', response.data.response.body.items.item);
 
             let items = response.data.response.body.items.item;
@@ -67,6 +75,7 @@ const BooglingService = () => {
 
     async function getRemoteData() {
         console.log("[BooglingService] getRemoteData() CALLED!!");
+
 
         let year = ["2022", "2023"];
         let month = ["01"];
@@ -104,11 +113,16 @@ const BooglingService = () => {
         }
     }
 
+
     return (
         <>
             <BrowserRouter>
                 <Header />
-                <Nav ref={changeLoginStatus} signInedMember={signInedMember} />
+                <Nav
+                    ref={changeLoginStatus}
+                    signInedMember={signInedMember}
+                    userDB={userDB}
+                />
                 <Routes>
                     <Route path="/" element={<Main item={item} />}></Route>
                     <Route
@@ -138,6 +152,10 @@ const BooglingService = () => {
                         element={<UserModifyResult />}
                     ></Route>
                     <Route path="/search" element={<Search item={item} />}></Route>
+                    <Route path="/user/favorites" element={<Favorites />}></Route>
+                    <Route path="/apt_detail/:id" element={<AptDetail item={item}
+                        userDB={userDB} signInedMember={signInedMember} aptInfo={aptInfo} />}></Route>
+                    <Route element={<AptPriceRank setAptInfo={setAptInfo} />}></Route>
                     <Route path="*" element={<Main />}></Route>
                 </Routes>
             </BrowserRouter>

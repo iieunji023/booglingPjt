@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import AptPriceRankMain from "../AptPriceRankMain";
-const AptPriceRank = ({ item }) => {
+const AptPriceRank = ({ item, setAptInfo }) => {
+  
   return (
     <div className="apt_ranking">
       <div className="apt_ranking_title">Best 5</div>
       <div className="apt_ranking_main">
-        <AptPriceRankMain item={item} />
+        <AptPriceRankMain item={item} setAptInfo={setAptInfo} />
       </div>
     </div>
   );

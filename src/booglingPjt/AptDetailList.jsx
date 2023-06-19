@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-const AptDetailList = ({ price, date, area, floor }) => {
+const AptDetailList = ({ AptPrice, AptDate, AptArea, AptFloor }) => {
     return (
         <ul>
-            <li>{price}</li>
-            <li>{date}</li>
-            <li>{area}</li>
-            <li>{floor}</li>
+            <li>{AptPrice}</li>
+            <li>{AptDate}</li>
+            <li>{AptArea}</li>
+            <li>{AptFloor}</li>
         </ul>
     );
 }

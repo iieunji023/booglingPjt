@@ -7,18 +7,18 @@ import React, {
 import { Link, useNavigate } from "react-router-dom";
 
 const Nav = forwardRef(({ signInedMember, userDB }, ref) => {
-    const [loginedMember, setLoginedMember] = useState("");
-    const [searchValue, setSearchValue] = useState("");
-    const [selectedRegion, setSelectedRegion] = useState("");
+  const [loginedMember, setLoginedMember] = useState("");   // 현재 로그인한 회원 정보를 저장하는 상태 변수
+  const [searchValue, setSearchValue] = useState("");       // 검색어를 저장하는 상태 변수
+  const [selectedRegion, setSelectedRegion] = useState(""); // 선택된 지역을 저장하는 상태 변수
 
 
     useEffect(() => {
         console.log("[Nav] useEffect() CALLED!!");
     });
 
-    const changeLoginMember = (signInedMember) => {
-        console.log("[Nav] changeLoginMember() CALLED!!");
-        console.log("[Nav] signInedMember.current", signInedMember.current);
+  const changeLoginMember = (signInedMember) => {                       // 로그인한 회원 정보 변경 함수
+    console.log("[Nav] changeLoginMember() CALLED!!");
+    console.log("[Nav] signInedMember.current", signInedMember.current);
 
         setLoginedMember(signInedMember.current);
     };
@@ -28,37 +28,33 @@ const Nav = forwardRef(({ signInedMember, userDB }, ref) => {
         changeLoginMember,
     }));
 
-    // SIGNOUT HANDLER
-    const signOutClickHandler = () => {
-        console.log("[Nav] signOutClickHandler() CALLED!!");
+  const signOutClickHandler = () => {                       // 로그아웃 버튼 클릭 이벤트 핸들러
+    console.log("[Nav] signOutClickHandler() CALLED!!");
 
         signInedMember.current = "";
         setLoginedMember("");
     };
 
-    // USERMODIFY HANDLER
-    const modifyAccountClickHandler = () => {
-        console.log("[Nav] modifyAccountClickHandler() CALLED!!");
-    };
+  const modifyAccountClickHandler = () => {
+    console.log("[Nav] modifyAccountClickHandler() CALLED!!");
+  };
 
-    const regionChangeEventHendler = (e) => {
-        console.log('[Nav] regionChangeEventHendler() CALLED!!');
-        setSelectedRegion(e.target.value)
-    }
+  const regionChangeEventHendler = (e) => {                     // 지역 선택 변경 이벤트 핸들러
+    console.log('[Nav] regionChangeEventHendler() CALLED!!');
+    setSelectedRegion(e.target.value)
+  }
 
-    const navigate = useNavigate();
-    const clicked = () => {
-        navigate("/search", {
-            state: {
-                region: selectedRegion,
-                searchValue: searchValue,
-            }
-        });
-    };
+  const navigate = useNavigate();                               // 검색 버튼 클릭 이벤트 핸들러
+  const clicked = () => {
+    navigate("/search", { state: {
+                                 region: selectedRegion,
+                                 searchValue: searchValue,
+                                }});
+                              };
 
-    const handleInputChange = (e) => {
-        setSearchValue(e.target.value);
-    };
+  const handleInputChange = (e) => {                            // 검색어 입력 값 변경 이벤트 핸들러
+    setSearchValue(e.target.value);
+  };
 
     return (
         <nav>

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+const aptNameClick = true;
 
-const AptPriceRankMain = ({ item }) => {
+const AptPriceRankMain = ({ item, setAptInfo }) => {
 
     let [apartNameTitle, setApartNameTitle] = useState([]);
     let [apartPriceTitle, setApartPriceTitle] = useState([]);
+
 
     let apartNameAndPriceComposition;
     let apartComposition;
@@ -46,7 +48,6 @@ const AptPriceRankMain = ({ item }) => {
     resultArray.sort((a, b) => b.value - a.value);
 
     console.log("정렬된 것------------->", resultArray);
-
     // console.log("길이 : ==========>", apartNameAndPrice.length);
 
     // apartNameTitle = resultArray.map(item => item.name);
@@ -79,13 +80,30 @@ const AptPriceRankMain = ({ item }) => {
     // }
 
 
+    
+    // const aptNameClickHandler = (e) => {
+    //        console.log('[AptPriceRankMain] aptNameClickHandler()', e.target.value);
+    //         return setAptInfo(e.target.value);
+    // } 
+
+    const aptNameClickHandler = (e) => {
+        console.log('[AptPriceRankMain] aptNameClickHandler()', e.target.value); // 이 부분을 수정해야 합니다.
+        const { value } = e.currentTarget.location.state;
+        return setAptInfo(value);
+    }
+
+
+
     return (
         <>
             {
                 resultArray.map((item, idx) => (
                     idx <= 4 ?
                         <div className="apt_rankinglist">
-                            <Link>{item.name}</Link>
+                            {/* <Link to={'/' onClick={aptNameClickHandler} value='나와라'>{item.name}</Link> */}
+                            
+   
+                            <Link to={  `/apt_detail/${item.name}` } >{item.name}</Link>
                             <ul>
                                 <li>
                                     <span>{item.value}만</span>
