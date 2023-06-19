@@ -5,7 +5,7 @@ import './css/main.css';
 import AptPriceRank from "./AptPriceRank";
 
 const Main = ({ item }) => {
-    console.log("item ", item)
+    // console.log("item ", item)
     return (
         <main>
             <div className="main">

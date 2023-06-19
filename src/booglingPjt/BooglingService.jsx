@@ -76,12 +76,11 @@ const BooglingService = () => {
   async function getRemoteData() {
     console.log("[BooglingService] getRemoteData() CALLED!!");
 
-    // let year = ["2022", "2023"];
-    // let month = ["01"];
+    let year = ["2022", "2023"];
+    let month = ["01"];
     // let region = ["11","14","17","20","23","26","29","32","35","38","41","44","47","50","53","71",];
-    let year = ["2022"]; // 조회할 년도
-    let month = ["01"]; // 조회할 월
-    let region = ["11", "14", "17"]; // 조회할 지역 코드
+    // let region = ["32","35","38","53","17","20"]// 조회할 지역 코드
+    let region = ["32","35","38"]// 조회할 지역 코드
 
     try {
       year.map(function (y) {

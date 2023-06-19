@@ -15,7 +15,7 @@ const AptPriceRankMain = ({ item, setAptInfo }) => {
     let apartNameAndPrice = [];
     const apartName = [];
     let apartPrice = [];
-    console.log("item------------->", item);
+    // console.log("item------------->", item);
     // 아파트이름과 가격을 합친것을 배열로 만든다.
     if (item) {
         item.forEach(function (item) {
@@ -27,7 +27,7 @@ const AptPriceRankMain = ({ item, setAptInfo }) => {
             });
         });
     }
-    console.log("아파트 가격과 거래금액------>", apartNameAndPrice);
+    // console.log("아파트 가격과 거래금액------>", apartNameAndPrice);
     // function extractNumbers(apartNameAndPrice) {
     //     const numbers = [];
 
@@ -47,7 +47,7 @@ const AptPriceRankMain = ({ item, setAptInfo }) => {
 
     resultArray.sort((a, b) => b.value - a.value);
 
-    console.log("정렬된 것------------->", resultArray);
+    // console.log("정렬된 것------------->", resultArray);
     // console.log("길이 : ==========>", apartNameAndPrice.length);
 
     // apartNameTitle = resultArray.map(item => item.name);

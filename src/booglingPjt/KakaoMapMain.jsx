@@ -9,7 +9,7 @@ const KakaoMapMain = ({ item }) => {
 
   const addressName = [];
 
-  console.log("---------->", item);
+  // console.log("---------->", item);
 
   if (item) {
     item.forEach(function (item) {
@@ -21,7 +21,7 @@ const KakaoMapMain = ({ item }) => {
     });
   }
 
-  console.log("--------> ")
+  // console.log("--------> ")
 
 
   useEffect(() => {
