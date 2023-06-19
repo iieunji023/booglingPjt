@@ -48,8 +48,8 @@
   margin-right: 8px;
 }
 
-#wrap > div.bar > ul.bar_ul > li.apt_search,
-#wrap > div.bar > ul.bar_ul > li.actual_transaction_price,
+#wrap > div.bar > ul.bar_ul > li.apt_search, 
+#wrap > div.bar > ul.bar_ul > li.actual_transaction_price, 
 #wrap > div.bar > ul.bar_ul > li.region_settings,
 #wrap > div.bar > ul.bar_ul > li.btn {
   float: right;
@@ -57,14 +57,71 @@
   color: #fff;
 }
 
-#wrap > div.detail {
+#wrap div.main {
   width: 1200px;
+  margin: 0 auto;
+}
+#wrap li.search_result {
+  width: 800px;
+  margin: 0 auto;
+}
+
+#wrap div.title {
+  padding: 15px;
+  font-size: 1.7em;
+  font-weight: bold;
+  color: #4f4f4f;
   text-align: center;
-  margin: 20px auto;
+  border-bottom: 2px solid #c9c9c9;
+}
+#wrap div.title img {
+  min-width: 50px;
+  max-width: 50px;
+}
+
+#wrap div.list ul {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #dadada;
+}
+
+#wrap ul.list_name li{
+  font-weight: bold;
+  color: #676767;
+}
+
+#wrap div.list li {
+  width: 200px; 
+  padding: 10px 0;
+  text-align: center;
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#wrap div.list li.area,
+#wrap div.list li.floor {
+  width: 100px;
+}
+
+#wrap div.list a {
+  font-weight: bold;
+  color: #4f4f4f;
+}
+
+#wrap div.page {
+  margin-top: 15px;
   display: flex;
   justify-content: center;
 }
 
+<<<<<<< HEAD
+#wrap div.menu {
+  width: 300px;
+  margin-top: 60px;
+  margin-left: 30px;
+=======
 #wrap div.detail_wrap {
   width: 600px;
   margin-right: 100px;
@@ -81,6 +138,13 @@
   font-weight: bold;
 }
 
+#wrap div.detail_title > ul > li {
+  margin-right: 15px;
+}
+.btn i:hover {
+  cursor: pointer;
+}
+
 #wrap div.detail_address {
   font-size: 1.2em;
   padding: 15px;
@@ -88,22 +152,30 @@
 
 #wrap div.detail_list {
   width: 100%;
+>>>>>>> ec6073eaa7899e900fc45c609871468c7f0319bc
   padding: 10px;
+  border: 1px solid #dadada;
+  border-radius: 10px;
   text-align: center;
 }
 
-#wrap div.detail_list table {
+<<<<<<< HEAD
+#wrap div.menu p {
+=======
+#wrap div.detail_list > div.table {
   width: 100%;
   border-collapse: collapse;
   margin-left: auto;
   margin-right: auto;
   border-spacing: 0px 10px;
+  padding: 20px;
 }
 
-#wrap div.detail_list table td {
+#wrap div.detail_list ul > li {
   border-bottom: 1px solid #dadada;
   padding: 10px;
   font-size: 1.2em;
+  padding: 35px;
 }
 
 #wrap div.menu_bar {
@@ -111,26 +183,40 @@
   border-radius: 7px;
   margin-top: 25px;
   padding: 15px;
+  margin-top: 100px;
 }
 
 #wrap div.menu_bar p {
+>>>>>>> ec6073eaa7899e900fc45c609871468c7f0319bc
   font-weight: bold;
   margin: 5px 0;
 }
 
 #wrap div.search_btn {
   margin-top: 9px;
+<<<<<<< HEAD
+
+=======
+  height: 70px;
+>>>>>>> ec6073eaa7899e900fc45c609871468c7f0319bc
 }
 
-#wrap div.search_btn a {
+#wrap div.menu a {
   padding: 2px 3px;
   border: 1px solid #dadada;
   border-radius: 5px;
   font-size: 0.9em;
 }
 
-#wrap > div.detail > div img {
-  margin-top: 30px;
+<<<<<<< HEAD
+#wrap div.map img {
   min-width: 300px;
   max-width: 300px;
 }
+=======
+#wrap > div.detail > div img {
+  margin-top: 50px;
+  min-width: 400px;
+  max-width: 400px;
+}
+>>>>>>> ec6073eaa7899e900fc45c609871468c7f0319bc
