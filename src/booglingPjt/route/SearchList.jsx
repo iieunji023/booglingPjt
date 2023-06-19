@@ -9,7 +9,7 @@ const SearchList = ({AptName, AptAdress, AptPrice, AptArea,AptFloor}) => {
 
         <ul>
             <li>
-                <Link>{AptName}</Link>
+                <Link to={  `/apt_detail/${AptName}` } >{AptName}</Link>
             </li>
             <li>{AptAdress}</li>
             <li>{AptPrice}</li>

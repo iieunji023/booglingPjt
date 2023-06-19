@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Nav = forwardRef(({ signInedMember, userDB }, ref) => {
   const [loginedMember, setLoginedMember] = useState("");   // 현재 로그인한 회원 정보를 저장하는 상태 변수
   const [searchValue, setSearchValue] = useState("");       // 검색어를 저장하는 상태 변수
-  const [selectedRegion, setSelectedRegion] = useState(""); // 선택된 지역을 저장하는 상태 변수
+  const [selectedRegion, setSelectedRegion] = useState("00000"); // 선택된 지역을 저장하는 상태 변수
 
 
     useEffect(() => {
@@ -89,10 +89,13 @@ const Nav = forwardRef(({ signInedMember, userDB }, ref) => {
                         <Link to='/search' >찾기</Link>
                     </li>
 
-                    <li className="region_settings">
+                    <li className={searchValue == "" ?  'region_settings' : 'region_settings hidden'}>
                         <span>지역설정</span>
                         <select name="region" onChange={regionChangeEventHendler}>
                             <option value='00000' >지역설정</option>
+                            <option value='26320'> 북구</option>
+                            <option value='26350'> 해운대구</option>
+                            <option value='26380'> 사하구</option>
                             <option value='26110'> 중구</option>
                             <option value='26140'> 서구</option>
                             <option value='26170'> 동구</option>
@@ -100,9 +103,6 @@ const Nav = forwardRef(({ signInedMember, userDB }, ref) => {
                             <option value='26230'> 부산진구</option>
                             <option value='26260'> 동래구</option>
                             <option value='26290'> 남구</option>
-                            <option value='26320'> 북구</option>
-                            <option value='26350'> 해운대구</option>
-                            <option value='26380'> 사하구</option>
                             <option value='26410'> 금정구</option>
                             <option value='26440'> 강서구</option>
                             <option value='26470'> 연제구</option>
@@ -112,7 +112,7 @@ const Nav = forwardRef(({ signInedMember, userDB }, ref) => {
                         </select>
                     </li>
 
-                    <li className="apt_search">
+                    <li className={selectedRegion == '00000' ? 'apt_search' : 'apt_search hidden'}>
                         <span>검색</span>
                         <input
                             type="text"
