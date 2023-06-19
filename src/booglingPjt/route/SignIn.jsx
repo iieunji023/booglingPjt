@@ -25,6 +25,12 @@ const SignIn = ({ userDB, signInedMember, setLoginedSession }) => {
       setLoginedSession();
 
       navigate("/");
+    } else if (m_id !== setM_id) {
+      console.log("[UserSignIn] SIGN-IN FAIL!!");
+
+      setM_id("");
+      setM_pw("");
+      return alert("아이디가 일치하지 않습니다.");
     } else if (m_pw !== setM_pw) {
       console.log("[UserSignIn] SIGN-IN FAIL!!");
 

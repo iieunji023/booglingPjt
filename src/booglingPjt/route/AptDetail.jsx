@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import './css/aptDetail.css'
+import "./css/aptDetail.css";
 import AptDetailList from "../AptDetailList";
 import LikeBtn from "../LikeBtn";
 import KakaoMapDetail from "../KakaoMapDetail";
@@ -22,7 +22,7 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
     }
   },[]);
 
-  let AptOriginalArray = []
+  let AptOriginalArray = [];
   item.forEach(function (item) {
     item.forEach(function (item2) {
       AptOriginalArray.push({
@@ -49,8 +49,8 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
         AptFloor: filteredsearchValue.AptFloor,
         AptDate: filteredsearchValue.AptDate,
       });
-    })
-  } 
+    });
+  }
 
   // console.log('[AptDetail] AptFilteredArray------>', AptFilteredArray)
 
@@ -59,7 +59,7 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
   let aptTitleAddress = AptFilteredArray[0].AptAdress;
   
   const LikeBtnOnClick = () => {
-    console.log('[AptDetail] click');
+    console.log("[AptDetail] click");
 
     if (favoriteBtn) {
 
@@ -77,8 +77,12 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
       console.log('즐겨찾기 추가', userDB.get(m_mail));
       return setFavoriteBtn(true)
     }
-  }
+  };
 
+  let aptTitleName = AptFilteredArray.map((item) => item.AptName);
+  console.log("이름------------->", aptTitleName);
+  let aptTitleAddress = AptFilteredArray.map((item) => item.AptAdress);
+  console.log("이름------------->", aptTitleAddress);
 
   return (
     <section>
@@ -91,7 +95,9 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
               </li>
               <li>
                 <div className="like_btn">
-                  <button onClick={LikeBtnOnClick}><LikeBtn onClick={favoriteBtn} /></button>
+                  <button onClick={LikeBtnOnClick}>
+                    <LikeBtn onClick={favoriteBtn} />
+                  </button>
                 </div>
               </li>
             </ul>
@@ -105,7 +111,7 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
                 <li>층수</li>
               </ul>
 
-              {
+{
                 AptFilteredArray.map((ele, idx) => {
                   return (
                     <AptDetailList
@@ -114,7 +120,7 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
                       AptAdress={ele.AptAdress}
                       AptPrice={ele.AptPrice}
                       AptArea={ele.AptArea}
-                      AptFloor={ele.AptFloor}
+                      AptFloor={ele.AptFloor} 
                       AptDate={ele.AptDate} />
                   )
                 })
@@ -124,24 +130,49 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
 
             <div className="page">
               <ul>
-                <li><a href="#none">&#60;</a>&nbsp; &nbsp;</li>
-                <li><a href="#none">1</a>&nbsp;</li>
-                <li><a href="#none">2</a>&nbsp;</li>
-                <li><a href="#none">3</a>&nbsp;</li>
-                <li><a href="#none">4</a>&nbsp;</li>
-                <li><a href="#none">5</a>&nbsp; &nbsp;</li>
-                <li><a href="#none">&#62;</a>&nbsp; &nbsp;</li>
+                <li>
+                  <a href="#none">&#60;</a>&nbsp; &nbsp;
+                </li>
+                <li>
+                  <a href="#none">1</a>&nbsp;
+                </li>
+                <li>
+                  <a href="#none">2</a>&nbsp;
+                </li>
+                <li>
+                  <a href="#none">3</a>&nbsp;
+                </li>
+                <li>
+                  <a href="#none">4</a>&nbsp;
+                </li>
+                <li>
+                  <a href="#none">5</a>&nbsp; &nbsp;
+                </li>
+                <li>
+                  <a href="#none">&#62;</a>&nbsp; &nbsp;
+                </li>
               </ul>
             </div>
-
           </li>
           <li className="menu_map">
             <div className="detail_menu">
               <div className="contract_date">
                 <p>계약일자</p>
-                <input type="date" id="date" max="2023-08-20" min="2020-06-05" value="" />
+                <input
+                  type="date"
+                  id="date"
+                  max="2023-08-20"
+                  min="2020-06-05"
+                  value=""
+                />
                 ~
-                <input type="date" id="date" max="2023-08-20" min="2020-06-05" value="" />
+                <input
+                  type="date"
+                  id="date"
+                  max="2023-08-20"
+                  min="2020-06-05"
+                  value=""
+                />
               </div>
               <div className="price_settings">
                 <p>금액설정</p>
@@ -172,7 +203,6 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
                   <option>10억 이하</option>
                   <option>10억 이상</option>
                 </select>
-
               </div>
               <div className="area_settings">
                 <p>면적설정</p>
@@ -192,7 +222,7 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
               </div>
             </div>
             <div className="map">
-              <KakaoMapDetail />
+              <KakaoMapDetail AptFilteredArray={AptFilteredArray} />
             </div>
           </li>
         </ul>

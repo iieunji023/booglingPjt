@@ -122,6 +122,9 @@ const SignUp = ({ userDB }) => {
     } else if (m_mail === "") {
       alert("이메일을 입력해주세요.");
       result = false;
+    } else if (userDB.get(m_mail) === userDB.has(m_mail)) {
+      alert("이미 존재하는 이메일입니다.");
+      result = false;
     } else if (checkEmail(m_mail) === false) {
       alert("이메일을 형식에 맞게 입력해주세요.");
       result = false;

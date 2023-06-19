@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 const { kakao } = window;
 
 const KakaoMapMain = ({ item }) => {
-
-
   let apartComposition;
   // let apartNameComposition;
 
@@ -14,15 +12,15 @@ const KakaoMapMain = ({ item }) => {
   if (item) {
     item.forEach(function (item) {
       item.forEach(function (item2) {
-        apartComposition = "부산광역시 " + item2.도로명 + item2.도로명건물본번호코드;
+        apartComposition =
+          "부산광역시 " + item2.도로명 + item2.도로명건물본번호코드;
         addressName.push(apartComposition);
         // console.log("아파트 가격과 거래금액------>", apartNameAndPrice)
       });
     });
   }
 
-  console.log("--------> ")
-
+  console.log("--------> ");
 
   useEffect(() => {
     var mapContainer = document.getElementById("map"); // 지도를 표시할 div
@@ -38,25 +36,35 @@ const KakaoMapMain = ({ item }) => {
       minLevel: 5, // 클러스터 할 최소 지도 레벨
     });
 
-    var geocoder = new kakao.maps.services.Geocoder();
+    let geocoder = new kakao.maps.services.Geocoder();
 
     for (let i = 0; i < addressName.length; i++) {
       // console.log("두번째-------------->", );
       geocoder.addressSearch(addressName[i], function (result, status) {
         if (status === kakao.maps.services.Status.OK) {
-          var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-          var marker = new kakao.maps.Marker({
+          const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+          const marker = new kakao.maps.Marker({
             map: map,
             position: coords,
           });
-          var infowindow = new kakao.maps.InfoWindow({
-            content: `<div style="width:150px;text-align:center;padding:6px 0;">${addressName[i]}</div>`
+          const infowindow = new kakao.maps.InfoWindow({
+            content: `<div style="width:150px;text-align:center;padding:6px 0;">${addressName[i]}</div>`,
           });
-          infowindow.open(map, marker);
-          map.setCenter(coords);
+
+          // infowindow.open(map, marker);
+          // map.setCenter(coords);
         }
       });
     }
+    if (addressName.length > 0) {
+      // 첫 번째 마커의 좌표로 지도의 중심을 설정합니다.
+      geocoder.addressSearch(addressName[0], function (result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+          var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+          map.panTo(coords); // 지도의 중심을 해당 마커 위치로 이동합니다.
+        }
+      });
+    } //
   }, [addressName]);
 
   return <li id="map" style={{ width: "800px", height: "725px" }}></li>;
