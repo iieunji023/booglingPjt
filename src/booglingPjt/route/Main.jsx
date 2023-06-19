@@ -3,9 +3,10 @@ import KakaoMapMain from "../KakaoMapMain";
 import { Link, useNavigate } from "react-router-dom";
 import './css/main.css';
 import AptPriceRank from "./AptPriceRank";
+import AptRisingRank from "./AptRisingRank";
 
 const Main = ({ item }) => {
-    console.log("item ", item)
+    // console.log("item ", item)
     return (
         <main>
             <div className="main">
@@ -15,70 +16,9 @@ const Main = ({ item }) => {
                         {item.length !== 0 ? <AptPriceRank item={item} /> : null}
 
                         <div className="apt_top">
-                            <div className="apt_top_title">올해의 급상승 아파트</div>
-                            <div className="apt_top_main">
-                                <div>
-                                    <Link>1. 해운대 아파트</Link>
-                                    <ul>
-                                        <li><p className="increase">상승</p></li>
-                                        <li>
-                                            <span>5.2% </span>
-                                        </li>
-                                        <li>
-                                            <span>8.2억원</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <Link>2. 센텀 아파트</Link>
-                                    <ul>
-                                        <li><p className="increase">상승</p></li>
-                                        <li>
-                                            <span>4.6% </span>
-                                        </li>
-                                        <li>
-                                            <span>7.2억원</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <Link>3. 광안리 아파트</Link>
-                                    <ul>
-                                        <li><p className="decrease">하락</p></li>
-                                        <li>
-                                            <span>3.2% </span>
-                                        </li>
-                                        <li>
-                                            <span>4.5억원</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <Link>4. 센텀 아파트</Link>
-                                    <ul>
-                                        <li><p className="increase">상승</p></li>
-                                        <li>
-                                            <span>4.6% </span>
-                                        </li>
-                                        <li>
-                                            <span>7.2억원</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <Link>5. 광안리 아파트</Link>
-                                    <ul>
-                                        <li><p className="decrease">하락</p></li>
-                                        <li>
-                                            <span>3.2% </span>
-                                        </li>
-                                        <li>
-                                            <span>4.5억원</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            {item.length !== 0 ? <AptRisingRank item={item} /> : null}
                         </div>
+
 
 
                     </li>
@@ -182,7 +122,7 @@ const Main = ({ item }) => {
                 </ul>
             </div>
 
-        </main>
+        </main >
     );
 }
 export default Main;

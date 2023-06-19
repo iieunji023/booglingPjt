@@ -21,7 +21,7 @@ import AptDetail from "./route/AptDetail";
 const serviceKey =
     "0TEjPSWe8Amdu9ZJNlmbFk6NN2BTXyQ%2FmbjKh0CNdzVi1HdozklmwK1bMRH%2BwqQ9v9d0Tz7p%2FSquZPjNdufLdg%3D%3D"; // 서비스키(필수)
 const pageNo = 1; // 페이지 번호(옵션)
-const numOfRows = 10; // 한 페이지 결과 수(옵션)
+const numOfRows = 30; // 한 페이지 결과 수(옵션)
 
 const BooglingService = () => {
     const [userDB, setUserDB] = useState(new Map()); // 사용자 데이터베이스를 관리하기 위한 상태 변수
@@ -68,24 +68,24 @@ const BooglingService = () => {
     async function getRemoteData() {
         console.log("[BooglingService] getRemoteData() CALLED!!");
 
-        let year = ["2022"];
+        let year = ["2022", "2023"];
         let month = ["01"];
         let region = [
-            "11",
-            "14",
+            // "11",
+            // "14",
             "17",
-            // "20",
+            "20",
             // "23",
             // "26",
             // "29",
-            // "32",
-            // "35",
-            // "38",
+            "32",
+            "35",
+            "38",
             // "41",
             // "44",
             // "47",
             // "50",
-            // "53",
+            "53",
             // "71",
         ];
 
