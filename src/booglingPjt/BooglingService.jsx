@@ -20,6 +20,7 @@ import KakaoMapMain from "./KakaoMapMain";
 import Favorites from "./route/Favorites";
 import AptDetail from "./route/AptDetail";
 import AptPriceRank from "./route/AptPriceRank";
+import FavoritesList from "./FavoritesList";
 
 // const serviceKey ="IyQg8I2dXbv8kkUs2Gki35cm64Cu%2BxaUWkNCsFipH3WWV6%2FiZD4HHrq4v%2Bykezvft92l9H5S0zULIYrQonfaUA%3D%3D"; // (필수 트래픽 초과시 다른 서비스키 이용바람)
 const serviceKey =
@@ -150,6 +151,7 @@ const BooglingService = () => {
           ></Route>
           <Route path="/search" element={<Search item={item} />}></Route>
           <Route path="/user/favorites" element={<Favorites />}></Route>
+          <Route element={<FavoritesList item={item}/>}></Route>
           <Route
             path="/apt_detail/:id"
             element={

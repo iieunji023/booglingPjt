@@ -1,14 +1,15 @@
+/* eslint-disable */
 import React, { useEffect, useState } from "react";
 import "./css/aptDetail.css";
 import AptDetailList from "../AptDetailList";
 import LikeBtn from "../LikeBtn";
 import KakaoMapDetail from "../KakaoMapDetail";
 import { useParams } from 'react-router-dom';
+import FavoritesList from "../FavoritesList";
 
 const AptDetail = ({ userDB, signInedMember, item }) => {
   const [favoriteBtn, setFavoriteBtn] = useState(false);
   const { id } = useParams();
-  // console.log(id)
   const [m_favoriteApt, setM_favoriteApt] = useState("");
   const [m_mail, setM_mail] = useState("");
   const [loginedMember, setloginedMember] = useState("");
@@ -20,7 +21,7 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
       setloginedMember(member);
       setM_mail(member.m_mail);
     }
-  },[]);
+  }, []);
 
   let AptOriginalArray = [];
   item.forEach(function (item) {
@@ -57,28 +58,40 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
 
   let aptTitleName = AptFilteredArray[0].AptName;
   let aptTitleAddress = AptFilteredArray[0].AptAdress;
-  
+
   const LikeBtnOnClick = () => {
     console.log("[AptDetail] click");
 
     if (favoriteBtn) {
 
-      if (userDB.get(m_mail).m_favoriteApt === aptTitleName) {
-        userDB.get(m_mail, {
-          m_favoriteApt: ''
-        });
-      }
-      console.log('즐겨찾기 삭제', m_favoriteApt);
+      // if (userDB.get(m_mail).m_favoriteApt === aptTitleName) {
+      //   userDB.get(m_mail, {
+      //     m_favoriteApt: ''
+      //   });
+      // }
+      // console.log('즐겨찾기 삭제', m_favoriteApt);
       return setFavoriteBtn(false);
     } else {
-      userDB.set(m_mail, {
-        m_favoriteApt: AptFilteredArray
-      });
-      console.log('즐겨찾기 추가', userDB.get(m_mail));
+      // userDB.set(m_mail, {
+      //   m_favoriteApt: AptFilteredArray
+      // });
+      // console.log('즐겨찾기 추가', userDB.get(m_mail));
+      if (signInedMember.current !== '') {
+        setM_favoriteApt(aptTitleName);
+        console.log('[AptDetail] m_favoriteApt', { m_favoriteApt });
+        <FavoritesList m_favoriteApt={m_favoriteApt} favoriteBtn={favoriteBtn} />
+      }
+
       return setFavoriteBtn(true)
     }
-  };
-  
+  }
+
+  // let aptTitleName = AptFilteredArray.map(item => item.AptName);
+  // let aptTitleName = AptFilteredArray[0].AptName;
+  // console.log("이름------------->", aptTitleName)
+  // let aptTitleAddress = AptFilteredArray.map(item => item.AptAdress);
+  // console.log("주소------------->", aptTitleAddress)
+
   return (
     <section>
       <div className="main">
@@ -106,7 +119,7 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
                 <li>층수</li>
               </ul>
 
-{
+              {
                 AptFilteredArray.map((ele, idx) => {
                   return (
                     <AptDetailList
@@ -115,7 +128,7 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
                       AptAdress={ele.AptAdress}
                       AptPrice={ele.AptPrice}
                       AptArea={ele.AptArea}
-                      AptFloor={ele.AptFloor} 
+                      AptFloor={ele.AptFloor}
                       AptDate={ele.AptDate} />
                   )
                 })
