@@ -7,16 +7,23 @@ import Paging from "../Paging";
 
 
 const Search = ({ item }) => {
-  
   const location = useLocation();
   let region = location.state.region // [Nav] URL에서 전달된 지역 정보
   let searchValue = location.state.searchValue // [Nav] URL에서 전달된 검색어
+
   // console.log('[Search] location----> ', location);
-  // console.log('[Search] location.state----> ', location.state);
-  
-  
+  console.log('[Search] location.state----> ', location.state);
+
+  // console.log('[Search] value----> ', region);
+  // console.log('[Search] searchValue----> ', searchValue);
+  console.log('[Search] item =====> ', item)
+
+
   const [AptOriginalArray, setAptOriginalArray] = useState([])
   const [AptFilteredArray, setAptFilteredArray] = useState([]) //리스트에 나타낼 아이템
+
+
+
   const [currentPosts, setCurrentPosts] = useState([]) //보여줄 포스트
 
   const handlePageChange = (page) => { setPage(page) }
@@ -26,26 +33,7 @@ const Search = ({ item }) => {
   const indexOfFirstPost = indexOfLastPost - postPerPage
 
 
-
-
-  // useEffect(() => {
-
-  //   setCurrentPosts(AptFilteredArray.slice(indexOfFirstPost, indexOfLastPost))
-  // }, [AptFilteredArray, indexOfFirstPost, indexOfLastPost, page]);
   useEffect(() => {
-    setCurrentPosts(AptFilteredArray.slice(indexOfFirstPost, indexOfLastPost));
-  }, [AptFilteredArray, indexOfFirstPost, indexOfLastPost, page]);
-  
-
-
-
-
-
-  // console.log('[Search] value----> ', region);
-  // console.log('[Search] searchValue----> ', searchValue);
-  // console.log('[Search] item =====> ', item)
-
-
   // 원본 데이터인 item을 분해해서 원하는 형태로 AptOriginalArray에 담기
   // let AptOriginalArray = []
 
@@ -64,10 +52,10 @@ const Search = ({ item }) => {
 
   // 검색어로 필터링된 아파트 목록 생성
   // AptOriginalArray을 분해해서 "[Nav] URL에서 전달된 검색어" 와 일치하는 데이터만 AptFilteredArray에 push
-  // let AptFilteredArray = []
+  // let AptFilteredArray = [];
   if (searchValue != '') {
     const filteredsearchValue = AptOriginalArray.filter((ele) => ele.AptName == searchValue);
-    // console.log('[Search] filteredsearchValue: ', filteredsearchValue)
+    console.log('[Search] filteredsearchValue: ', filteredsearchValue)
     filteredsearchValue.forEach(function (filteredsearchValue) {
       AptFilteredArray.push({
         AptName: filteredsearchValue.AptName,
@@ -75,6 +63,7 @@ const Search = ({ item }) => {
         AptPrice: filteredsearchValue.AptPrice,
         AptArea: filteredsearchValue.AptArea,
         AptFloor: filteredsearchValue.AptFloor,
+        AptRegion: filteredsearchValue.AptRegion,
       });
     })
   }
@@ -90,10 +79,23 @@ const Search = ({ item }) => {
         AptPrice: filteredregion.AptPrice,
         AptArea: filteredregion.AptArea,
         AptFloor: filteredregion.AptFloor,
+        AptRegion: filteredregion.AptRegion,
       });
     });
   }
+  
+  
+  console.log('[Search] AptFilteredArray:', AptFilteredArray)
+  console.log('[Search] AptFilteredArray.length', AptFilteredArray.length)
+},[])
 
+
+useEffect(() => {
+  
+  // console.log('[Search] USE AptFilteredArray.length', AptFilteredArray.length)
+  
+  setCurrentPosts(AptFilteredArray.slice(indexOfFirstPost, indexOfLastPost));
+}, [AptFilteredArray, indexOfFirstPost, indexOfLastPost, page]);
 
 
   return (
@@ -129,11 +131,11 @@ const Search = ({ item }) => {
             <div className="page">
 
               <Paging totalCount={AptFilteredArray.length}
-                      page={page} 
-                      postPerPage={postPerPage} 
-                      handlePageChange={handlePageChange}
-                      pageRangeDisplayed={5}
-                      setPage={setPage}
+                page={page}
+                postPerPage={postPerPage}
+                handlePageChange={handlePageChange}
+                pageRangeDisplayed={5}
+                setPage={setPage}
               />
 
             </div>

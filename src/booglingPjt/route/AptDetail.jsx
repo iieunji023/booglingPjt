@@ -80,11 +80,6 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
     }
   }
 
-  // let aptTitleName = AptFilteredArray.map(item => item.AptName);
-  // let aptTitleName = AptFilteredArray[0].AptName;
-  // console.log("이름------------->", aptTitleName)
-  // let aptTitleAddress = AptFilteredArray.map(item => item.AptAdress);
-  // console.log("주소------------->", aptTitleAddress)
 
   return (
     <section>
