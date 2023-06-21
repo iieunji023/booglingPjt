@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useEffect, useState } from "react";
 import "./css/aptDetail.css";
 import AptDetailList from "../AptDetailList";
@@ -21,7 +20,7 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
       setloginedMember(member);
       setM_mail(member.m_mail);
     }
-  }, []);
+  }, []); 
 
   let AptOriginalArray = [];
   item.forEach(function (item) {
@@ -72,15 +71,15 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
       // console.log('즐겨찾기 삭제', m_favoriteApt);
       return setFavoriteBtn(false);
     } else {
-      // userDB.set(m_mail, {
-      //   m_favoriteApt: AptFilteredArray
-      // });
-      // console.log('즐겨찾기 추가', userDB.get(m_mail));
-      if (signInedMember.current !== '') {
-        setM_favoriteApt(aptTitleName);
-        console.log('[AptDetail] m_favoriteApt', { m_favoriteApt });
-        <FavoritesList m_favoriteApt={m_favoriteApt} favoriteBtn={favoriteBtn} />
-      }
+      userDB.set(m_mail, {
+        m_favoriteApt: AptFilteredArray
+      });
+      console.log('즐겨찾기 추가', userDB.get(m_mail));
+      // if (signInedMember.current !== '') {
+      //   setM_favoriteApt(aptTitleName);
+      //   console.log('[AptDetail] m_favoriteApt', { m_favoriteApt });
+      //   <FavoritesList m_favoriteApt={m_favoriteApt} favoriteBtn={favoriteBtn} />
+      // }
 
       return setFavoriteBtn(true)
     }

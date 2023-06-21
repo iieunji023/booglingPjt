@@ -24,8 +24,8 @@ import FavoritesList from "./FavoritesList";
 
 // const serviceKey ="IyQg8I2dXbv8kkUs2Gki35cm64Cu%2BxaUWkNCsFipH3WWV6%2FiZD4HHrq4v%2Bykezvft92l9H5S0zULIYrQonfaUA%3D%3D"; // (필수 트래픽 초과시 다른 서비스키 이용바람)
 const serviceKey =
-  // "4QZ4e0ftFVHceln9FiZ6yhc%2BsY3bdDiyce%2BULzBK87k5Hnrs0B10zEajsBdqg5TcQgPo0dz5lzbmrkev1dZXWg%3D%3D"; // (필수)
-  "RvgsyTk%2Flok04ktoqe2PPV7OVvyVTLa7IwjiW2%2F0FQTxVKe8SjNYZUpLpn3WFYskzMW0jsHeiehpwUeVIJnLkw%3D%3D";
+  "4QZ4e0ftFVHceln9FiZ6yhc%2BsY3bdDiyce%2BULzBK87k5Hnrs0B10zEajsBdqg5TcQgPo0dz5lzbmrkev1dZXWg%3D%3D"; // (필수)
+  // "RvgsyTk%2Flok04ktoqe2PPV7OVvyVTLa7IwjiW2%2F0FQTxVKe8SjNYZUpLpn3WFYskzMW0jsHeiehpwUeVIJnLkw%3D%3D";
 
 const pageNo = 1; // 페이지 번호(옵션)
 const numOfRows = 30; // 한 페이지 결과 수(옵션)
@@ -35,6 +35,8 @@ const BooglingService = () => {
   const [userDB, setUserDB] = useState(new Map()); // 사용자 데이터베이스를 관리하기 위한 상태 변수
   const signInedMember = useRef(""); // 현재 로그인한 회원을 저장하기 위한 참조 변수
   const changeLoginStatus = useRef(""); // 로그인 상태 변경 함수를 호출하기 위한 참조 변수
+
+  const [realTimeSearch, setRealTimeSearch] = useState([]); // 실시간 검색내역 변수
 
   const setLoginedSession = () => {
     console.log("[BooglingService] setLoginedSesstion() CALLED!!");
@@ -120,9 +122,11 @@ const BooglingService = () => {
           ref={changeLoginStatus}
           signInedMember={signInedMember}
           userDB={userDB}
+          setRealTimeSearch={setRealTimeSearch}
+          realTimeSearch={realTimeSearch}
         />
         <Routes>
-          <Route path="/" element={<Main item={item} />}></Route>
+          <Route path="/" element={<Main item={item} realTimeSearch={realTimeSearch}/>}></Route>
           <Route
             path="/user/sign_up"
             element={<SignUp userDB={userDB} />}
