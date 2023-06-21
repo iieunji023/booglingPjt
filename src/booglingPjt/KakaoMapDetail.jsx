@@ -103,7 +103,7 @@ const KakaoMapDetail = ({ AptFilteredArray }) => {
           map.setCenter(coords);
 
           // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다.
-          // infowindow.open(map, marker);
+          infowindow.open(map, marker);
 
           // 지도의 중심을 coords 좌표로 이동합니다.
           map.setCenter(coords);

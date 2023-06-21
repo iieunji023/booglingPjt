@@ -4,14 +4,11 @@ const AptRisingRankMain = ({ item }) => {
 
 
 
-
     let apartNameAndPriceComposition2022;
     let apartNameAndPrice2022 = [];
 
     let apartNameAndPriceComposition2023;
     let apartNameAndPrice2023 = [];
-
-    let apartPrice2022;
 
 
     console.log("***Risingitem------------->****", item);
@@ -19,11 +16,11 @@ const AptRisingRankMain = ({ item }) => {
         item.forEach(function (item) {
             item.forEach(function (item2) {
                 if (item2.년 === 2022) {
-                    apartNameAndPriceComposition2022 = "부산광역시 " + item2.도로명 + item2.도로명건물본번호코드 + item2.아파트 + " " + item2.층 + "층" + " " + item2.전용면적 + item2.거래금액;
+                    apartNameAndPriceComposition2022 = "부산광역시" + item2.도로명 + item2.도로명건물본번호코드 + " " + item2.아파트 + " " + item2.층 + "층" + " " + item2.전용면적 + item2.거래금액;
                     apartNameAndPrice2022.push(apartNameAndPriceComposition2022);
                 }
                 else if (item2.년 === 2023) {
-                    apartNameAndPriceComposition2023 = "부산광역시 " + item2.도로명 + item2.도로명건물본번호코드 + item2.아파트 + " " + item2.층 + "층" + " " + item2.전용면적 + item2.거래금액;
+                    apartNameAndPriceComposition2023 = "부산광역시" + item2.도로명 + item2.도로명건물본번호코드 + " " + item2.아파트 + " " + item2.층 + "층" + " " + item2.전용면적 + item2.거래금액;
                     apartNameAndPrice2023.push(apartNameAndPriceComposition2023);
                 }
                 // console.log("아파트 가격과 거래금액------>", apartNameAndPrice)
@@ -77,6 +74,15 @@ const AptRisingRankMain = ({ item }) => {
 
     console.log("아파트 가격 차이 정렬된 것------------->", AptRisingNameAndPrice);
 
+    const AptRisingNameAndPriceResult = AptRisingNameAndPrice.map(item => {
+        const splitName = item.name.split(' ');
+        const name = splitName.slice(1).join(' ');
+        const diffPercent = item.diffPercent;
+        const value = item.value;
+        return { name, diffPercent, value };
+    });
+
+    console.log("잘라낸 결과-------------->", AptRisingNameAndPriceResult);
 
 
     // apartPrice2022 = resultArray2022.map(item => item.value);
@@ -86,7 +92,7 @@ const AptRisingRankMain = ({ item }) => {
         <div>
 
             {
-                AptRisingNameAndPrice.map((item, idx) => (
+                AptRisingNameAndPriceResult.map((item, idx) => (
                     idx <= 4 ?
                         <div className="apt_rankingRisinglist">
                             <Link>{item.name}</Link>

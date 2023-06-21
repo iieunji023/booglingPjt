@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./css/signUp.css";
+import Favorites from "./Favorites";
 
 const SIGN_UP_BUTTON = "1";
 const RESET_BUTTON = "2";
@@ -98,6 +99,11 @@ const SignUp = ({ userDB }) => {
           console.log(userDB);
           navigate("/user/sign_up_result");
         }
+        let arr = [];
+
+        localStorage.setItem(m_mail, JSON.stringify(arr));
+        console.log("m_mail ----> ", JSON.parse(localStorage.getItem(m_mail)));
+
         break;
 
       case RESET_BUTTON:

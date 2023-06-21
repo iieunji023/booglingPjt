@@ -30,14 +30,16 @@ const KakaoMapMain = ({ item }) => {
     var mapContainer = document.getElementById("map"); // 지도를 표시할 div
     var mapOption = {
       center: new kakao.maps.LatLng(35.1795543, 129.0756416), // 지도의 중심좌표
+
       level: 5, // 지도의 확대 레벨
     };
     var map = new kakao.maps.Map(mapContainer, mapOption);
 
     var clusterer = new kakao.maps.MarkerClusterer({
       map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
-      averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
-      minLevel: 10, // 클러스터 할 최소 지도 레벨
+      // averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+      minLevel: 5, // 클러스터 할 최소 지도 레벨
+
     });
 
     // 마커에 마우스 이벤트 리스너 추가
@@ -81,15 +83,15 @@ const KakaoMapMain = ({ item }) => {
         }
       });
     }
-    if (addressName.length > 0) {
-      // 첫 번째 마커의 좌표로 지도의 중심을 설정합니다.
-      geocoder.addressSearch(addressName[0], function (result, status) {
-        if (status === kakao.maps.services.Status.OK) {
-          var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-          map.panTo(coords); // 지도의 중심을 해당 마커 위치로 이동합니다.
-        }
-      });
-    } //
+    // if (addressName.length > 0) {
+    //   // 첫 번째 마커의 좌표로 지도의 중심을 설정합니다.
+    //   geocoder.addressSearch(addressName[0], function (result, status) {
+    //     if (status === kakao.maps.services.Status.OK) {
+    //       var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+    //       map.panTo(coords); // 지도의 중심을 해당 마커 위치로 이동합니다.
+    //     }
+    //   });
+    // }
   }, [addressName]);
 
   return <li id="map" style={{ width: "1000px", height: "725px" }}></li>;
