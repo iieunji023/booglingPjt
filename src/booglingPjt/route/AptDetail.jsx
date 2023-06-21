@@ -75,24 +75,25 @@ const AptDetail = ({ userDB, setUserDB, signInedMember, item }) => {
 
   let aptTitleName = AptFilteredArray[0].AptName;
   let aptTitleAddress = AptFilteredArray[0].AptAdress;
+  let member = userDB.get(signInedMember.current);
+
+
 
   const LikeBtnOnClick = () => {
     console.log("[AptDetail] click");
 
     if (favoriteBtn) {
 
-      // if (userDB.get(m_mail).m_favoriteApt === aptTitleName) {
-      //   userDB.get(m_mail, {
-      //     m_favoriteApt: ''
-      //   });
-      // }
-      // console.log('즐겨찾기 삭제', m_favoriteApt);
+
+
       return setFavoriteBtn(false);
     } else {
-      userDB.set(m_mail, {
-        m_favoriteApt: AptFilteredArray
-      });
-      console.log('즐겨찾기 추가', userDB.get(m_mail));
+      localStorage.getItem(member.m_mail);
+      let dataArray = JSON.parse(localStorage.getItem(member.m_mail));
+      dataArray.push(id);
+      JSON.stringify(dataArray);
+      localStorage.setItem(member.m_mail, JSON.stringify(dataArray));
+      console.log('즐겨찾기 추가', dataArray);
       return setFavoriteBtn(true)
     }
   }
