@@ -82,10 +82,7 @@ const Search = ({ item }) => {
 
   return (
     <section>
-
       <div className="search_main">
-        <ul>
-          <li className="search_result">
             <div className="search_title">검색결과</div>
             <div className="search_list">
               <ul className="list_name">
@@ -118,75 +115,8 @@ const Search = ({ item }) => {
                 pageRangeDisplayed={5}
                 setPage={setPage}
               />
+              
             </div>
-          </li>
-          <li className="menu">
-            <div className="contract_date">
-              <p>계약일자</p>
-
-              <input
-                type="date"
-                id="date"
-                max="2023-08-20"
-                min="2020-06-05"
-                value=""
-              />
-              <input
-                type="date"
-                id="date"
-                max="2023-08-20"
-                min="2020-06-05"
-                value=""
-              />
-            </div>
-            <div className="price_settings">
-              <p>금액설정</p>
-              <select name="min_price">
-                <option>전체금액</option>
-                <option>1억 이하</option>
-                <option>2억 이하</option>
-                <option>3억 이하</option>
-                <option>4억 이하</option>
-                <option>5억 이하</option>
-                <option>7억 이하</option>
-                <option>8억 이하</option>
-                <option>9억 이하</option>
-                <option>10억 이하</option>
-                <option>10억 이상</option>
-              </select>
-              <span> ~ </span>
-              <select name="max_price">
-                <option>전체금액</option>
-                <option>1억 이하</option>
-                <option>2억 이하</option>
-                <option>3억 이하</option>
-                <option>4억 이하</option>
-                <option>5억 이하</option>
-                <option>7억 이하</option>
-                <option>8억 이하</option>
-                <option>9억 이하</option>
-                <option>10억 이하</option>
-                <option>10억 이상</option>
-              </select>
-            </div>
-            <div className="area_settings">
-              <p>면적설정</p>
-              <select name="area">
-                <option>모든평수</option>
-                <option>10평대</option>
-                <option>20평대</option>
-                <option>30평대</option>
-                <option>40평대</option>
-                <option>50평대</option>
-                <option>60평대</option>
-                <option>70평 이상</option>
-              </select>
-            </div>
-            <div className="search_btn">
-              <a href="#none">찾기</a>
-            </div>
-          </li>
-        </ul>
       </div>
     </section>
   );

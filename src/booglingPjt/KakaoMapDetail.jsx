@@ -13,8 +13,9 @@ const KakaoMapDetail = ({ AptFilteredArray }) => {
       AptFilteredArray.forEach(function (item2) {
         apartComposition =
           "부산광역시 " +
+          "\t" +
           AptFilteredArray[0].AptAdress +
-          " " +
+          "\t" +
           AptFilteredArray[0].AptName;
         addressName.push(apartComposition);
       });
@@ -67,6 +68,19 @@ const KakaoMapDetail = ({ AptFilteredArray }) => {
 
     const geocoder = new kakao.maps.services.Geocoder();
 
+    // 마커에 마우스 이벤트 리스너 추가
+    const addMarkerMouseEvents = (marker, infowindow) => {
+      // 마우스를 올렸을 때 정보 창 열기
+      kakao.maps.event.addListener(marker, "mouseover", function () {
+        infowindow.open(map, marker);
+      });
+
+      // 마우스를 뗄 때 정보 창 닫기
+      kakao.maps.event.addListener(marker, "mouseout", function () {
+        infowindow.close();
+      });
+    };
+
     // 주소 검색
     const searchAddress = (address) => {
       geocoder.addressSearch(address, function (result, status) {
@@ -82,8 +96,14 @@ const KakaoMapDetail = ({ AptFilteredArray }) => {
             content: `<div style="width:150px;text-align:center;padding:6px 0;">${addressName[0]}</div>`,
           });
 
+          // 마커에 마우스 이벤트 리스너 추가
+          addMarkerMouseEvents(marker, infowindow);
+
+          // 지도의 중심을 coords 좌표로 이동합니다.
+          map.setCenter(coords);
+
           // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다.
-          // infowindow.open(map, marker);
+          infowindow.open(map, marker);
 
           // 지도의 중심을 coords 좌표로 이동합니다.
           map.setCenter(coords);

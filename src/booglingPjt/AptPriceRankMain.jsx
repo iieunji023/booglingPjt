@@ -80,7 +80,7 @@ const AptPriceRankMain = ({ item, setAptInfo }) => {
     // }
 
 
-    
+
     // const aptNameClickHandler = (e) => {
     //        console.log('[AptPriceRankMain] aptNameClickHandler()', e.target.value);
     //         return setAptInfo(e.target.value);
@@ -92,8 +92,6 @@ const AptPriceRankMain = ({ item, setAptInfo }) => {
         return setAptInfo(value);
     }
 
-
-
     return (
         <>
             {
@@ -101,9 +99,9 @@ const AptPriceRankMain = ({ item, setAptInfo }) => {
                     idx <= 4 ?
                         <div className="apt_rankinglist">
                             {/* <Link to={'/' onClick={aptNameClickHandler} value='나와라'>{item.name}</Link> */}
-                            
-   
-                            <Link to={  `/apt_detail/${item.name}` } >{item.name}</Link>
+
+
+                            <Link to={`/apt_detail/${item.name}`} >{item.name}</Link>
                             <ul>
                                 <li>
                                     <span>{item.value}만</span>

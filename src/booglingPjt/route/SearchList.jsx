@@ -4,13 +4,13 @@ import Btn from "../Btn"
 
 
 
-const SearchList = ({AptName, AptAdress, AptPrice, AptArea,AptFloor}) => {
+const SearchList = ({ AptName, AptAdress, AptPrice, AptArea, AptFloor }) => {
 
     return (
 
         <ul>
             <li>
-                <Link to={  `/apt_detail/${AptName}` } >{AptName}</Link>
+                <Link to={`/apt_detail/${AptName}`} >{AptName}</Link>
             </li>
             <li>{AptAdress}</li>
             <li>{AptPrice}</li>

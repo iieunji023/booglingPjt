@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./css/signUp.css";
+import Favorites from "./Favorites";
 
 const SIGN_UP_BUTTON = "1";
 const RESET_BUTTON = "2";
@@ -11,6 +12,7 @@ const SignUp = ({ userDB }) => {
   const [m_name, setM_name] = useState("");
   const [m_mail, setM_mail] = useState("");
   const [m_pw, setM_pw] = useState("");
+  const [m_rePw, setM_rePw] = useState("");
   const [m_birth, setM_birth] = useState("");
   const [m_addr, setM_addr] = useState("");
   const [m_phone, setM_phone] = useState("");
@@ -98,6 +100,11 @@ const SignUp = ({ userDB }) => {
           navigate("/user/sign_up_result");
           // alert("회원가입이 완료되었습니다.");
         }
+        let arr = [];
+
+        localStorage.setItem(m_mail, JSON.stringify(arr));
+        console.log("m_mail ----> ", JSON.parse(localStorage.getItem(m_mail)));
+
         break;
 
       case RESET_BUTTON:
@@ -131,6 +138,9 @@ const SignUp = ({ userDB }) => {
     } else if (m_pw === "") {
       alert("비밀번호를 입력해주세요.");
       result = false;
+    } else if (m_pw !== m_rePw) {
+      alert("비밀번호가 일치하지 않습니다.");
+      result = false;
     } else if (CheckPw(m_pw) === false) {
       alert("숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요 !");
       result = false;
@@ -158,6 +168,7 @@ const SignUp = ({ userDB }) => {
     <section>
       <div className="section_wrap">
         <div className="sign_up">
+          <div className="sign_up_title">회원가입</div>
           <input
             type="text"
             name="m_name"
@@ -185,6 +196,16 @@ const SignUp = ({ userDB }) => {
             value={m_pw}
             onChange={(e) => {
               setM_pw(e.target.value);
+            }}
+          />
+          <br />
+          <input
+            type="password"
+            name="re_pw"
+            placeholder="비밀번호 재입력"
+            value={m_rePw}
+            onChange={(e) => {
+              setM_rePw(e.target.value);
             }}
           />
           <br />
