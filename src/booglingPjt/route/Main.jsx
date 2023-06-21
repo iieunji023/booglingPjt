@@ -5,8 +5,9 @@ import "./css/main.css";
 import AptPriceRank from "./AptPriceRank";
 import AptRisingRank from "./AptRisingRank";
 
-const Main = ({ item }) => {
+const Main = ({ item, realTimeSearch }) => {
   // console.log("item ", item)
+  console.log("[Main]realTimeSearch ", realTimeSearch);
   return (
     <main>
       <div className="main">
@@ -104,24 +105,17 @@ const Main = ({ item }) => {
             <div className="real_time_search">
               <div className="real_time_search_title">실시간 검색 내역</div>
               <div className="real_time_search_main">
-                <div>
-                  <a href="#none">해운대</a>
-                </div>
-                <div>
-                  <a href="#none">베스핀</a>
-                </div>
-                <div>
-                  <a href="#none">글로벌</a>
-                </div>
-                <div>
-                  <a href="#none">Learn</a>
-                </div>
-                <div>
-                  <a href="#none">Do</a>
-                </div>
-                <div>
-                  <a href="#none">Share</a>
-                </div>
+                {realTimeSearch != "" ? (
+                  realTimeSearch.map((element) => {
+                    return (
+                      <div>
+                        <a href="#none">{element}</a>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div>실시간 검색내역 없음</div>
+                )}
               </div>
             </div>
           </li>

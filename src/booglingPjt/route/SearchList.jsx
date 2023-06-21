@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Btn from "../Btn"
+
 
 
 const SearchList = ({AptName, AptAdress, AptPrice, AptArea,AptFloor}) => {

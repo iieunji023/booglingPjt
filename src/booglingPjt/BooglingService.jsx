@@ -36,6 +36,8 @@ const BooglingService = () => {
   const signInedMember = useRef(""); // 현재 로그인한 회원을 저장하기 위한 참조 변수
   const changeLoginStatus = useRef(""); // 로그인 상태 변경 함수를 호출하기 위한 참조 변수
 
+  const [realTimeSearch, setRealTimeSearch] = useState([]); // 실시간 검색내역 변수
+
   const setLoginedSession = () => {
     console.log("[BooglingService] setLoginedSesstion() CALLED!!");
 
@@ -120,9 +122,14 @@ const BooglingService = () => {
           ref={changeLoginStatus}
           signInedMember={signInedMember}
           userDB={userDB}
+          setRealTimeSearch={setRealTimeSearch}
+          realTimeSearch={realTimeSearch}
         />
         <Routes>
-          <Route path="/" element={<Main item={item} />}></Route>
+          <Route
+            path="/"
+            element={<Main item={item} realTimeSearch={realTimeSearch} />}
+          ></Route>
           <Route
             path="/user/sign_up"
             element={<SignUp userDB={userDB} />}
