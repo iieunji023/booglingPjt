@@ -1,6 +1,6 @@
 section > div.section_wrap > div.sign_in {
   /* position: relative; */
-  margin: 50px auto;
+  margin: 100px auto;
   width: 400px;
   display: flex;
   flex-direction: column;

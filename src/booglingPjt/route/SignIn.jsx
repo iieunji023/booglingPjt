@@ -15,6 +15,9 @@ const SignIn = ({ userDB, signInedMember, setLoginedSession }) => {
   // HANDLER START
   const ClickedBtnHandler = (e) => {
     console.log("[SignIn] ClickedBtnHandler() CALLED!!");
+    // const U_id = userDB.get(m_id).m_mail;
+    // const U_pw = userDB.get(m_id).m_pw;
+    console.log("m_id: ", userDB.get(m_id));
 
     if (userDB.has(m_id) && userDB.get(m_id).m_pw === m_pw) {
       console.log("[UserSignIn] SIGN-IN SUCCESS!!");
@@ -25,13 +28,16 @@ const SignIn = ({ userDB, signInedMember, setLoginedSession }) => {
       setLoginedSession();
 
       navigate("/");
-    } else if (m_id !== setM_id) {
+    } else if (m_id == "" && m_pw == "") {
+      alert("아이디와 비밀번호를 입력해주세요.");
+    } else if (!userDB.has(m_id)) {
       console.log("[UserSignIn] SIGN-IN FAIL!!");
-
+      // console.log("m_id : ", m_id);
+      // console.log("U_id : ", U_id);
       setM_id("");
       setM_pw("");
       return alert("아이디가 일치하지 않습니다.");
-    } else if (m_pw !== setM_pw) {
+    } else {
       console.log("[UserSignIn] SIGN-IN FAIL!!");
 
       setM_id("");

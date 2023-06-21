@@ -1,38 +1,58 @@
 /*header 시작*/
+
+div.wrap {
+  background-color: #5fa4ed8c;
+}
+
 header {
-    width: 1600px; margin: 0 auto;
+  width: 1600px;
+  margin: 0 auto;
 }
 
-header div.logo {
-    text-align: center;
-}
+/* header div.logo {
+  text-align: center;
+} */
 
-header div.logo img {
-    margin-top: 3px;
-    height: 65px;
-    min-width: 270px;
-    max-width: 270px;
-}
 /*header 끝*/
 
 /*nav 시작*/
-nav div.bar{
-    width: 1600px; margin: 0 auto;
-    height: 80px;
-    border-bottom: 1px solid #dadada;
-    line-height: 80px;
-    background-color: rgba(132, 206, 58, 0.589);
+nav {
+  height: 150px;
+  margin-bottom: 40px;
+  /* background-color: #5fa4ed8c; */
+}
+
+nav li.logo img {
+  /* margin-top: 3px; */
+  height: 50px;
+  min-width: 150px;
+  max-width: 150px;
+  line-height: 50px;
+  margin-left: 10px;
+  /* padding: 30px; */
+}
+
+nav div.bar {
+  width: 100%;
+  margin: 0 auto;
+  /* height: 200px; */
+  /* border-bottom: 1px solid #dadada; */
+  line-height: 150px;
+  /* background-color: rgba(132, 206, 58, 0.589); */
+  /* background-color: #1763e9; */
+  /* background-color: #234fa18b; */
+  /* background-color: #5fa4ed8c; */
 }
 
 nav div.bar input {
-    border: 1px solid #dadada;
-    border-radius: 5px;
-    padding: 4px;
+  border: 1px solid #dadada;
+  border-radius: 5px;
+  padding: 4px;
 }
 nav div.bar select {
-    border: 1px solid #dadada;
-    border-radius: 5px;
-    padding: 4px;
+  border: 1px solid #dadada;
+  border-radius: 5px;
+  padding: 4px;
 }
 
 nav div.bar > ul.bar_ul > li.sign_in a,
@@ -40,23 +60,92 @@ nav div.bar > ul.bar_ul > li.sign_up a,
 nav div.bar > ul.bar_ul > li.modify a,
 nav div.bar > ul.bar_ul > li.apt_search a,
 nav div.bar > ul.bar_ul > li.btn a {
-    display: inline-block;
-    line-height: 80px;
-    margin-left: 10px;
-    font-weight: bold;
-    color: #fff;
+  display: inline-block;
+  line-height: 80px;
+  margin-left: 10px;
+  font-weight: bold;
+  color: #fff;
+  font-size: 1.2em;
+}
+
+nav div.bar > ul.bar_ul > li.btn a {
+  margin-right: 100px;
+  font-size: 1em;
 }
 
 nav div.bar > ul.bar_ul > li {
-    margin-right: 8px;
+  margin-right: 8px;
 }
 
-nav div.bar > ul.bar_ul > li.apt_search, 
-nav div.bar > ul.bar_ul > li.actual_transaction_price, 
-nav div.bar > ul.bar_ul > li.region_settings, 
+nav div.bar > ul.bar_ul > li.apt_search,
+nav div.bar > ul.bar_ul > li.actual_transaction_price,
+nav div.bar > ul.bar_ul > li.region_settings,
 nav div.bar > ul.bar_ul > li.btn {
-    float: right;
-    font-weight: bold;
-    color: #fff;
+  float: right;
+  font-weight: bold;
+  color: #fff;
+  font-size: 1.2em;
 }
+
+.hidden {
+  display: none;
+}
+
 /*nav 끝*/
+
+/* pagination 시작 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul.pagination li {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #e2e2e2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+
+ul.pagination li:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+ul.pagination li:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+ul.pagination li a {
+  text-decoration: none;
+  color: #337ab7;
+  font-size: 1rem;
+}
+
+ul.pagination li.active a {
+  color: white;
+}
+
+ul.pagination li.active {
+  background-color: #337ab7;
+}
+
+ul.pagination li a:hover,
+ul.pagination li a.active {
+  color: blue;
+}
+
+.page-selection {
+  width: 48px;
+  height: 30px;
+  color: #337ab7;
+}
+/* pagination 끝 */

@@ -1,21 +1,27 @@
+/* eslint-disable */
 import React, { useEffect, useState } from "react";
 import "./css/aptDetail.css";
 import AptDetailList from "../AptDetailList";
 import LikeBtn from "../LikeBtn";
 import KakaoMapDetail from "../KakaoMapDetail";
-import { useLocation } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom';
+
 const AptDetail = ({ userDB, signInedMember, item }) => {
   const [favoriteBtn, setFavoriteBtn] = useState(false);
   const { id } = useParams();
-  console.log(id);
-  // console.log('[AptDetail]---->', item)
-  // const [m_favoriteApt ,setM_favoriteApt] = useState();
-  // const [m_mail, setM_mail] = useState("");
+  // console.log(id)
+  const [m_favoriteApt, setM_favoriteApt] = useState("");
+  const [m_mail, setM_mail] = useState("");
+  const [loginedMember, setloginedMember] = useState("");
 
-  // let loginedMember = "";
-  // loginedMember = userDB.get(signInedMember.current);
-  // setM_mail(loginedMember.m_mail);
+  useEffect(() => {
+    console.log('[AptDetail] useEffect() CALLED');
+    if (signInedMember.current !== '') {
+      const member = userDB.get(signInedMember.current);
+      setloginedMember(member);
+      setM_mail(member.m_mail);
+    }
+  },[]);
 
   let AptOriginalArray = [];
   item.forEach(function (item) {
@@ -27,18 +33,14 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
         AptArea: item2.전용면적,
         AptFloor: item2.층,
         AptRegion: item2.지역코드,
-        AptDate: item2.월 + "월" + item2.일 + "일",
+        AptDate: (item2.월) + '월' + (item2.일) + '일',
       });
     });
   });
-
-  let AptFilteredArray = [];
-  //const [AptFilteredArray, setAptFilteredArray] = useState([]);
-  if (id != "") {
-    const filteredsearchValue = AptOriginalArray.filter(
-      (ele) => ele.AptName == id
-    );
-    console.log("[Search] filteredsearchValue: ", filteredsearchValue);
+  let AptFilteredArray = []
+  if (id !== '') {
+    const filteredsearchValue = AptOriginalArray.filter((ele) => ele.AptName == id);
+    console.log('[Search] filteredsearchValue: ', filteredsearchValue)
     filteredsearchValue.forEach(function (filteredsearchValue) {
       AptFilteredArray.push({
         AptName: filteredsearchValue.AptName,
@@ -51,26 +53,33 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
     });
   }
 
-  console.log("[AptDetail] AptFilteredArray------>", AptFilteredArray);
+  // console.log('[AptDetail] AptFilteredArray------>', AptFilteredArray)
 
+
+  let aptTitleName = AptFilteredArray[0].AptName;
+  let aptTitleAddress = AptFilteredArray[0].AptAdress;
+  
   const LikeBtnOnClick = () => {
     console.log("[AptDetail] click");
 
     if (favoriteBtn) {
-      // userDB.get(m_mail).m_favoriteApt = ""
+
+      if (userDB.get(m_mail).m_favoriteApt === aptTitleName) {
+        userDB.get(m_mail, {
+          m_favoriteApt: ''
+        });
+      }
+      console.log('즐겨찾기 삭제', m_favoriteApt);
       return setFavoriteBtn(false);
     } else {
-      // userDB.set(m_mail, {
-      //   m_favoriteApt: m_favoriteApt
-      // })
-      return setFavoriteBtn(true);
+      userDB.set(m_mail, {
+        m_favoriteApt: AptFilteredArray
+      });
+      console.log('즐겨찾기 추가', userDB.get(m_mail));
+      return setFavoriteBtn(true)
     }
-  };
+  }
 
-  let aptTitleName = AptFilteredArray.map((item) => item.AptName);
-  console.log("이름------------->", aptTitleName);
-  let aptTitleAddress = AptFilteredArray.map((item) => item.AptAdress);
-  console.log("이름------------->", aptTitleAddress);
 
   return (
     <section>
@@ -98,23 +107,22 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
                 <li>평수</li>
                 <li>층수</li>
               </ul>
-              {/* {item.map( ()
-                <AptDetailList price={price} date={date} area={area} floor={floor}/>
-              )} */}
 
-              {AptFilteredArray.map((ele, idx) => {
-                return (
-                  <AptDetailList
-                    key={idx}
-                    AptName={ele.AptName}
-                    AptAdress={ele.AptAdress}
-                    AptPrice={ele.AptPrice}
-                    AptArea={ele.AptArea}
-                    AptFloor={ele.AptFloor}
-                    AptDate={ele.AptDate}
-                  />
-                );
-              })}
+{
+                AptFilteredArray.map((ele, idx) => {
+                  return (
+                    <AptDetailList
+                      key={idx}
+                      AptName={ele.AptName}
+                      AptAdress={ele.AptAdress}
+                      AptPrice={ele.AptPrice}
+                      AptArea={ele.AptArea}
+                      AptFloor={ele.AptFloor} 
+                      AptDate={ele.AptDate} />
+                  )
+                })
+              }
+
             </div>
 
             <div className="page">

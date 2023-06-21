@@ -10,5 +10,5 @@ const AptRisingRank = ({ item }) => {
       </div>
     </div>
   );
-}
+};
 export default AptRisingRank;

@@ -3,23 +3,40 @@ import "./css/search.css";
 import "./css/common.css";
 import SearchList from "./SearchList";
 import { useLocation } from "react-router-dom";
+import Paging from "../Paging";
 
 
 const Search = ({ item }) => {
-
   const location = useLocation();
   let region = location.state.region // [Nav] URL에서 전달된 지역 정보
   let searchValue = location.state.searchValue // [Nav] URL에서 전달된 검색어
-  // console.log('[Search] location----> ', location);
-  // console.log('[Search] location.state----> ', location.state);
 
-  console.log('[Search] value----> ', region);
-  console.log('[Search] searchValue----> ', searchValue);
+  // console.log('[Search] location----> ', location);
+  console.log('[Search] location.state----> ', location.state);
+
+  // console.log('[Search] value----> ', region);
+  // console.log('[Search] searchValue----> ', searchValue);
   console.log('[Search] item =====> ', item)
 
 
+  const [AptOriginalArray, setAptOriginalArray] = useState([])
+  const [AptFilteredArray, setAptFilteredArray] = useState([]) //리스트에 나타낼 아이템
+
+
+
+  const [currentPosts, setCurrentPosts] = useState([]) //보여줄 포스트
+
+  const handlePageChange = (page) => { setPage(page) }
+  const [page, setPage] = useState(1) //현재 페이지
+  const [postPerPage] = useState(5); //페이지당 포스트 개수
+  const indexOfLastPost = page * postPerPage
+  const indexOfFirstPost = indexOfLastPost - postPerPage
+
+
+  useEffect(() => {
   // 원본 데이터인 item을 분해해서 원하는 형태로 AptOriginalArray에 담기
-  let AptOriginalArray = []
+  // let AptOriginalArray = []
+
   item.forEach(function (item) {
     item.forEach(function (item2) {
       AptOriginalArray.push({
@@ -35,7 +52,7 @@ const Search = ({ item }) => {
 
   // 검색어로 필터링된 아파트 목록 생성
   // AptOriginalArray을 분해해서 "[Nav] URL에서 전달된 검색어" 와 일치하는 데이터만 AptFilteredArray에 push
-  let AptFilteredArray = []
+  // let AptFilteredArray = [];
   if (searchValue != '') {
     const filteredsearchValue = AptOriginalArray.filter((ele) => ele.AptName == searchValue);
     console.log('[Search] filteredsearchValue: ', filteredsearchValue)
@@ -46,6 +63,7 @@ const Search = ({ item }) => {
         AptPrice: filteredsearchValue.AptPrice,
         AptArea: filteredsearchValue.AptArea,
         AptFloor: filteredsearchValue.AptFloor,
+        AptRegion: filteredsearchValue.AptRegion,
       });
     })
   }
@@ -53,7 +71,7 @@ const Search = ({ item }) => {
   // AptOriginalArray을 분해해서 "[Nav] URL에서 전달된 지역 정보" 와 일치하는 데이터만 AptFilteredArray에 push
   if (region != '00000') {
     const filteredregion = AptOriginalArray.filter((ele) => ele.AptRegion == region);
-    console.log('[Search] filteredregion: ', filteredregion)
+    // console.log('[Search] filteredregion: ', filteredregion)
     filteredregion.forEach(function (filteredregion) {
       AptFilteredArray.push({
         AptName: filteredregion.AptName,
@@ -61,17 +79,24 @@ const Search = ({ item }) => {
         AptPrice: filteredregion.AptPrice,
         AptArea: filteredregion.AptArea,
         AptFloor: filteredregion.AptFloor,
+        AptRegion: filteredregion.AptRegion,
       });
     });
   }
+  
+  
+  console.log('[Search] AptFilteredArray:', AptFilteredArray)
+  console.log('[Search] AptFilteredArray.length', AptFilteredArray.length)
+},[])
 
 
-  useEffect(() => {
+useEffect(() => {
+  
+  // console.log('[Search] USE AptFilteredArray.length', AptFilteredArray.length)
+  
+  setCurrentPosts(AptFilteredArray.slice(indexOfFirstPost, indexOfLastPost));
+}, [AptFilteredArray, indexOfFirstPost, indexOfLastPost, page]);
 
-    console.log('[Search] AptOriginalArray =====> ', AptOriginalArray)
-    console.log('[Search] AptFilteredArray =====> ', AptFilteredArray)
-
-  }, [])
 
   return (
     <section>
@@ -85,11 +110,11 @@ const Search = ({ item }) => {
                 <li>아파트</li>
                 <li>주소</li>
                 <li>거래가격</li>
-                <li className="area">평수</li>
+                <li className="area">면적</li>
                 <li className="floor">층수</li>
               </ul>
               {
-                AptFilteredArray.map((ele, idx) => {
+                currentPosts.map((ele, idx) => {
                   return (
                     <SearchList
                       key={idx}
@@ -104,29 +129,15 @@ const Search = ({ item }) => {
             </div>
 
             <div className="page">
-              <ul>
-                <li>
-                  <a href="#none">&#60;</a>&nbsp; &nbsp;
-                </li>
-                <li>
-                  <a href="#none">1</a>&nbsp;
-                </li>
-                <li>
-                  <a href="#none">2</a>&nbsp;
-                </li>
-                <li>
-                  <a href="#none">3</a>&nbsp;
-                </li>
-                <li>
-                  <a href="#none">4</a>&nbsp;
-                </li>
-                <li>
-                  <a href="#none">5</a>&nbsp; &nbsp;
-                </li>
-                <li>
-                  <a href="#none">&#62;</a>&nbsp; &nbsp;
-                </li>
-              </ul>
+
+              <Paging totalCount={AptFilteredArray.length}
+                page={page}
+                postPerPage={postPerPage}
+                handlePageChange={handlePageChange}
+                pageRangeDisplayed={5}
+                setPage={setPage}
+              />
+
             </div>
           </li>
           <li className="menu">

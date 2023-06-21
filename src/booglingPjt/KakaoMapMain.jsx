@@ -7,7 +7,7 @@ const KakaoMapMain = ({ item }) => {
 
   const addressName = [];
 
-  console.log("---------->", item);
+  // console.log("---------->", item);
 
   if (item) {
     item.forEach(function (item) {
@@ -24,13 +24,13 @@ const KakaoMapMain = ({ item }) => {
     });
   }
 
-  console.log("--------> ");
+  // console.log("--------> ")
 
   useEffect(() => {
     var mapContainer = document.getElementById("map"); // 지도를 표시할 div
     var mapOption = {
-      center: new kakao.maps.LatLng(35.13417, 129.11397), // 지도의 중심좌표
-      level: 10, // 지도의 확대 레벨
+      center: new kakao.maps.LatLng(35.1795543, 129.0756416), // 지도의 중심좌표
+      level: 5, // 지도의 확대 레벨
     };
     var map = new kakao.maps.Map(mapContainer, mapOption);
 
@@ -71,10 +71,10 @@ const KakaoMapMain = ({ item }) => {
           // 마커에 마우스 이벤트 리스너 추가
           addMarkerMouseEvents(marker, infowindow);
 
-          clusterer.addMarker(marker); // 클러스터에 마커 추가
+          // clusterer.addMarker(marker); // 클러스터에 마커 추가
 
           // 지도의 중심을 coords 좌표로 이동합니다.
-          map.setCenter(coords);
+          // map.setCenter(coords);
 
           // infowindow.open(map, marker);
           // map.setCenter(coords);
