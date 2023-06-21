@@ -5,14 +5,18 @@ import AptDetailList from "../AptDetailList";
 import LikeBtn from "../LikeBtn";
 import KakaoMapDetail from "../KakaoMapDetail";
 import { useParams } from 'react-router-dom';
+import { isEqual } from "lodash";
 
-const AptDetail = ({ userDB, signInedMember, item }) => {
+const AptDetail = ({ userDB, setUserDB, signInedMember, item }) => {
   const [favoriteBtn, setFavoriteBtn] = useState(false);
   const { id } = useParams();
   // console.log(id)
   const [m_favoriteApt, setM_favoriteApt] = useState("");
   const [m_mail, setM_mail] = useState("");
   const [loginedMember, setloginedMember] = useState("");
+  console.log("userDB===========>", userDB);
+
+
 
   useEffect(() => {
     console.log('[AptDetail] useEffect() CALLED');
@@ -21,27 +25,43 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
       setloginedMember(member);
       setM_mail(member.m_mail);
     }
-  },[]);
+  },);
 
   let AptOriginalArray = [];
   item.forEach(function (item) {
     item.forEach(function (item2) {
-      AptOriginalArray.push({
-        AptName: item2.아파트,
-        AptAdress: item2.도로명 + item2.도로명건물본번호코드,
-        AptPrice: item2.거래금액,
-        AptArea: item2.전용면적,
-        AptFloor: item2.층,
-        AptRegion: item2.지역코드,
-        AptDate: (item2.월) + '월' + (item2.일) + '일',
-      });
+      if (item2.도로명 === undefined) {
+        AptOriginalArray.push({
+          AptName: item2.아파트,
+          AptAdress: item2.법정동 + " " + item2.법정동본번코드 + " " + item2.법정동부번코드,
+          AptPrice: item2.거래금액,
+          AptArea: item2.전용면적,
+          AptFloor: item2.층,
+          AptRegion: item2.지역코드,
+          AptDate: (item2.월) + '월' + (item2.일) + '일',
+        });
+      } else {
+        AptOriginalArray.push({
+          AptName: item2.아파트,
+          AptAdress: item2.도로명 + item2.도로명건물본번호코드,
+          AptPrice: item2.거래금액,
+          AptArea: item2.전용면적,
+          AptFloor: item2.층,
+          AptRegion: item2.지역코드,
+          AptDate: (item2.월) + '월' + (item2.일) + '일',
+        });
+      }
     });
-  });
+  }); // 원본데이터에서 배열형식을 변경해준것 -> 그리고 AptOriginalArray으로 담아준것
+
+
+
   let AptFilteredArray = []
   if (id !== '') {
     const filteredsearchValue = AptOriginalArray.filter((ele) => ele.AptName == id);
     console.log('[Search] filteredsearchValue: ', filteredsearchValue)
     filteredsearchValue.forEach(function (filteredsearchValue) {
+
       AptFilteredArray.push({
         AptName: filteredsearchValue.AptName,
         AptAdress: filteredsearchValue.AptAdress,
@@ -51,34 +71,75 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
         AptDate: filteredsearchValue.AptDate,
       });
     });
-  }
+  } // 필터를 한것 즉 best5에서 클릭한 아파트명과 동일한 데이터만 추출
 
   // console.log('[AptDetail] AptFilteredArray------>', AptFilteredArray)
 
 
   let aptTitleName = AptFilteredArray[0].AptName;
   let aptTitleAddress = AptFilteredArray[0].AptAdress;
-  
+  let member = userDB.get(signInedMember.current)
+  // let DataArray = member.id;
+
+
+
+
   const LikeBtnOnClick = () => {
     console.log("[AptDetail] click");
 
     if (favoriteBtn) {
 
-      if (userDB.get(m_mail).m_favoriteApt === aptTitleName) {
-        userDB.get(m_mail, {
-          m_favoriteApt: ''
-        });
-      }
-      console.log('즐겨찾기 삭제', m_favoriteApt);
+
+      // let storedData = JSON.parse(localStorage.getItem('DataArray')) || [];
+      // let dataToDelete = {
+      //   [member.m_mail]: {
+      //     f_name: [id],
+      //     f_url: [`./apt_detail./${id}`]
+      //   }
+      // };
+      // let updatedData = storedData.filter(item => JSON.stringify(item) !== JSON.stringify(DataArray));
+      // localStorage.setItem('DataArray', JSON.stringify(updatedData));
+      // console.log('즐겨찾기 삭제:', DataArray);
+      // let isDuplicate = storedData.some(item => isEqual(item, DataArray));
+      // if (isDuplicate) {
+      //   // 이미 추가된 데이터인 경우 삭제
+      //   storedData = storedData.filter(item => !isEqual(item, DataArray));
+      //   localStorage.setItem('DataArray', JSON.stringify(storedData));
+      //   console.log('이미 추가된 데이터를 삭제했습니다:', DataArray);
+      // }
+
+      // let updatedData = storedData.filter(item => !deepEqual(item, dataToDelete));
+
+      // console.log('즐겨찾기 삭제', m_favoriteApt);
       return setFavoriteBtn(false);
     } else {
-      userDB.set(m_mail, {
-        m_favoriteApt: AptFilteredArray
-      });
-      console.log('즐겨찾기 추가', userDB.get(m_mail));
-      return setFavoriteBtn(true)
+      // userDB.set(m_mail, {
+      //   m_favoriteApt: AptFilteredArray
+      // });
+      console.log("memberid------>", member.m_mail);
+      localStorage.getItem(member.m_mail);
+      // console.log("왔나================>?", localStorage.getItem(member.id));
+      // JSON.parse(localStorage.getItem(member.id));
+      let dataArray = JSON.parse(localStorage.getItem(member.m_mail));
+      console.log('-----> ', localStorage.getItem(member.mail));
+      console.log("type----->", typeof dataArray);
+      // let isDuplicate = storedData.some(item => isEqual(item, DataArray));
+
+      // if (isDuplicate) {
+      //   console.log('이미 추가된 데이터입니다:', DataArray);
+      //   return deleteData;
+      // }
+      console.log("dataArray---------->", dataArray);
+      dataArray.push(id);
+      JSON.stringify(dataArray);
+      localStorage.setItem(member.m_mail, JSON.stringify(dataArray));
+      // let favoriteApt = JSON.parse(localStorage.getItem('userDB'));
+      // console.log('즐겨찾기 추가-------->', storedData);
+      return setFavoriteBtn(true);
     }
   }
+
+  // userDB.get(m_mail)
 
   // let aptTitleName = AptFilteredArray.map(item => item.AptName);
   // let aptTitleName = AptFilteredArray[0].AptName;
@@ -113,7 +174,7 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
                 <li>층수</li>
               </ul>
 
-{
+              {
                 AptFilteredArray.map((ele, idx) => {
                   return (
                     <AptDetailList
@@ -122,7 +183,7 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
                       AptAdress={ele.AptAdress}
                       AptPrice={ele.AptPrice}
                       AptArea={ele.AptArea}
-                      AptFloor={ele.AptFloor} 
+                      AptFloor={ele.AptFloor}
                       AptDate={ele.AptDate} />
                   )
                 })

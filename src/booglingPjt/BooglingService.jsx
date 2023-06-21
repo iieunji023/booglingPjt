@@ -21,10 +21,10 @@ import Favorites from "./route/Favorites";
 import AptDetail from "./route/AptDetail";
 import AptPriceRank from "./route/AptPriceRank";
 
-// const serviceKey ="IyQg8I2dXbv8kkUs2Gki35cm64Cu%2BxaUWkNCsFipH3WWV6%2FiZD4HHrq4v%2Bykezvft92l9H5S0zULIYrQonfaUA%3D%3D"; // (필수 트래픽 초과시 다른 서비스키 이용바람)
+// const serviceKey = "IyQg8I2dXbv8kkUs2Gki35cm64Cu%2BxaUWkNCsFipH3WWV6%2FiZD4HHrq4v%2Bykezvft92l9H5S0zULIYrQonfaUA%3D%3D"; // (필수 트래픽 초과시 다른 서비스키 이용바람)
 const serviceKey =
-    // "4QZ4e0ftFVHceln9FiZ6yhc%2BsY3bdDiyce%2BULzBK87k5Hnrs0B10zEajsBdqg5TcQgPo0dz5lzbmrkev1dZXWg%3D%3D"; // (필수)
-    "RvgsyTk%2Flok04ktoqe2PPV7OVvyVTLa7IwjiW2%2F0FQTxVKe8SjNYZUpLpn3WFYskzMW0jsHeiehpwUeVIJnLkw%3D%3D";
+    "4QZ4e0ftFVHceln9FiZ6yhc%2BsY3bdDiyce%2BULzBK87k5Hnrs0B10zEajsBdqg5TcQgPo0dz5lzbmrkev1dZXWg%3D%3D"; // (필수)
+// "RvgsyTk%2Flok04ktoqe2PPV7OVvyVTLa7IwjiW2%2F0FQTxVKe8SjNYZUpLpn3WFYskzMW0jsHeiehpwUeVIJnLkw%3D%3D";
 
 const pageNo = 1; // 페이지 번호(옵션)
 const numOfRows = 30; // 한 페이지 결과 수(옵션)
@@ -86,14 +86,14 @@ const BooglingService = () => {
             // "26",
             // "29",
             // "32",
-            //   "35",
+            // "35",
             // "38",
-            // "41",
-            // "44",
+            // "41", //
+            // "44", //
             // "47",
             // "50",
-            "53",
-            // "71",
+            // "53", // 사상
+            "71",
         ];
 
         try {
@@ -156,6 +156,7 @@ const BooglingService = () => {
                             <AptDetail
                                 item={item}
                                 userDB={userDB}
+                                setUserDB={setUserDB}
                                 signInedMember={signInedMember}
                                 aptInfo={aptInfo}
                             />

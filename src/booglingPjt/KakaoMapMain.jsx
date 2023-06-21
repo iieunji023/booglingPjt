@@ -26,8 +26,8 @@ const KakaoMapMain = ({ item }) => {
   useEffect(() => {
     var mapContainer = document.getElementById("map"); // 지도를 표시할 div
     var mapOption = {
-      center: new kakao.maps.LatLng(35.13417, 129.11397), // 지도의 중심좌표
-      level: 7, // 지도의 확대 레벨
+      center: new kakao.maps.LatLng(35.1795543, 129.0756416), // 지도의 중심좌표
+      level: 6, // 지도의 확대 레벨
     };
     var map = new kakao.maps.Map(mapContainer, mapOption);
 
@@ -57,15 +57,15 @@ const KakaoMapMain = ({ item }) => {
         }
       });
     }
-    if (addressName.length > 0) {
-      // 첫 번째 마커의 좌표로 지도의 중심을 설정합니다.
-      geocoder.addressSearch(addressName[0], function (result, status) {
-        if (status === kakao.maps.services.Status.OK) {
-          var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-          map.panTo(coords); // 지도의 중심을 해당 마커 위치로 이동합니다.
-        }
-      });
-    } //
+    // if (addressName.length > 0) {
+    //   // 첫 번째 마커의 좌표로 지도의 중심을 설정합니다.
+    //   geocoder.addressSearch(addressName[0], function (result, status) {
+    //     if (status === kakao.maps.services.Status.OK) {
+    //       var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+    //       map.panTo(coords); // 지도의 중심을 해당 마커 위치로 이동합니다.
+    //     }
+    //   });
+    // }
   }, [addressName]);
 
   return <li id="map" style={{ width: "800px", height: "725px" }}></li>;
