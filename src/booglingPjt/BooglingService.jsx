@@ -132,7 +132,7 @@ const BooglingService = () => {
                 <Routes>
                     <Route
                         path="/"
-                        element={<Main item={item} realTimeSearch={realTimeSearch} />}
+                        element={<Main item={item} realTimeSearch={realTimeSearch} userDB={userDB} signInedMember={signInedMember} />}
                     ></Route>
                     <Route
                         path="/user/sign_up"

@@ -4,6 +4,7 @@ import AptDetailList from "../AptDetailList";
 import LikeBtn from "../LikeBtn";
 import KakaoMapDetail from "../KakaoMapDetail";
 import { useParams } from "react-router-dom";
+import { includes } from "lodash";
 import FavoritesList from "../FavoritesList";
 
 const AptDetail = ({ userDB, setUserDB, signInedMember, item }) => {
@@ -21,6 +22,19 @@ const AptDetail = ({ userDB, setUserDB, signInedMember, item }) => {
       setloginedMember(member);
       setM_mail(member.m_mail);
     }
+
+    // 상세페이지 진입 시 현재 로그인 된 사람 아이디가 키값인 로컬스토리지 배열에 아파트명이 동일하다면 true 없다면 false
+    let localArray = JSON.parse(localStorage.getItem(member.m_mail));
+    // 회원가입시에 사용한 아이디를 키값으로 만든 배열을 부릅니다.
+    let include = localArray.includes(id);
+    // 키값으로 만든 배열에 있는 아파트이름과 상세보기 들어갈 때 클릭 시 누른 아파트이름을 비교하여 일치하면 true값을 반환한다.
+    console.log("localArray----------->", localArray);
+    console.log("ele--------->", typeof ele);
+    if (include) {
+      return setFavoriteBtn(true);
+    } else {
+      return setFavoriteBtn(false);
+    }
   }, []);
 
   let AptOriginalArray = [];
@@ -36,7 +50,8 @@ const AptDetail = ({ userDB, setUserDB, signInedMember, item }) => {
         AptDate: item2.월 + "월" + item2.일 + "일",
       });
     });
-  });
+  }); // 원본데이터에서 배열형식을 변경해준것 -> 그리고 AptOriginalArray으로 담아준것
+
   let AptFilteredArray = [];
   if (id !== "") {
     const filteredsearchValue = AptOriginalArray.filter(
@@ -67,13 +82,22 @@ const AptDetail = ({ userDB, setUserDB, signInedMember, item }) => {
     } else {
       localStorage.getItem(member.m_mail);
       let dataArray = JSON.parse(localStorage.getItem(member.m_mail));
-      dataArray.push(id);
+      dataArray.push(id); // 회원가입하고 로그인한 아이디의 로컬스토리지에 아파트이름을 넣어줍니다
       JSON.stringify(dataArray);
       localStorage.setItem(member.m_mail, JSON.stringify(dataArray));
       console.log("즐겨찾기 추가", dataArray);
+
       return setFavoriteBtn(true);
     }
   };
+
+  // userDB.get(m_mail)
+
+  // let aptTitleName = AptFilteredArray.map(item => item.AptName);
+  // let aptTitleName = AptFilteredArray[0].AptName;
+  // console.log("이름------------->", aptTitleName)
+  // let aptTitleAddress = AptFilteredArray.map(item => item.AptAdress);
+  // console.log("주소------------->", aptTitleAddress)
 
   return (
     <section>
