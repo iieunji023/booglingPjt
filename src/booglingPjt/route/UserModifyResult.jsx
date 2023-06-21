@@ -6,8 +6,8 @@ const UserModifyResult = () => {
   return (
     <section>
       {/* <div className="section_wrap">MEMBER MODIFY SUCCESS!!</div> */}
-      <div className="section_wrap">
-        <div className="success">
+      <div className="modify_result_wrap">
+        <div className="modify_result_success">
           <img src="../imgs/complete.png" />
           {/* <img src={image} alt="logo" class="logo" /> */}
           <br />

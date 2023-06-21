@@ -1,8 +1,4 @@
-section {
-  width: 100%;
-}
-
-section div.section_wrap {
+section div.modify_result_wrap {
   margin: 30px auto;
   width: 1000px;
   height: 600px;
@@ -10,12 +6,14 @@ section div.section_wrap {
   position: relative;
 }
 
-section div.success {
+section div.modify_result_success {
   height: 300px;
   border: 1px solid #dadada;
+  border-radius: 20px;
+  background-color: #fff;
 }
 
-section div.success img {
+section div.modify_result_success img {
   max-width: 300px;
   min-width: 300px;
   margin-top: 10px;
@@ -39,7 +37,7 @@ section div.success img {
   transform: translate(-50%, -50%);
 } */
 
-section div.success > p {
+section div.modify_result_success > p {
   font-size: 1.6em;
   font-weight: bold;
   padding: 5px 10px;

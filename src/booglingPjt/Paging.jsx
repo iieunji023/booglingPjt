@@ -3,6 +3,7 @@ import Pagination from "react-js-pagination";
 
 const Paging = ({ totalCount, page, postPerPage, handlePageChange, pageRangeDisplayed }) => {
   // console.log('totalCount: ', totalCount);
+
   // console.log('postPerPage: ', postPerPage);
   // console.log('pageRangeDisplayed: ', pageRangeDisplayed);
   // console.log('page: ', page);

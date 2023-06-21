@@ -1,29 +1,9 @@
-
-section {
-  width: 1600px;
-  margin: 0 auto;
-}
-
-section input {
-  border: 1px solid #dadada;
-  border-radius: 5px;
-  padding: 4px;
-}
-section select {
-  border: 1px solid #dadada;
-  border-radius: 5px;
-  padding: 4px;
-}
-
 section div.search_main {
-  width: 1200px;
+  width: 900px;
   margin: 0 auto;
+  background-color: #fff;
+  border-radius: 20px;
 }
-section li.search_result {
-  width: 800px;
-  margin: 0 auto;
-}
-
 section div.search_title {
   padding: 15px;
   font-size: 1.7em;
@@ -68,30 +48,4 @@ section div.page {
   margin-top: 15px;
   display: flex;
   justify-content: center;
-}
-
-section li.menu {
-  width: 300px;
-  margin-top: 60px;
-  margin-left: 30px;
-  padding: 10px;
-  border: 1px solid #dadada;
-  border-radius: 10px;
-  text-align: center;
-}
-
-section li.menu p {
-  font-weight: bold;
-  margin: 5px 0;
-}
-
-section div.search_btn {
-  margin-top: 9px;
-}
-
-section li.menu a {
-  padding: 2px 3px;
-  border: 1px solid #dadada;
-  border-radius: 5px;
-  font-size: 0.9em;
 }
