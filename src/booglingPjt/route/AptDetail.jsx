@@ -3,7 +3,7 @@ import "./css/aptDetail.css";
 import AptDetailList from "../AptDetailList";
 import LikeBtn from "../LikeBtn";
 import KakaoMapDetail from "../KakaoMapDetail";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { includes } from "lodash";
 
 
@@ -14,6 +14,7 @@ const AptDetail = ({ userDB, setUserDB, signInedMember, item }) => {
   const [m_favoriteApt, setM_favoriteApt] = useState("");
   const [m_mail, setM_mail] = useState("");
   const [loginedMember, setloginedMember] = useState("");
+  const navigate = useNavigate();
   console.log("userDB===========>", userDB);
 
 
@@ -23,6 +24,10 @@ const AptDetail = ({ userDB, setUserDB, signInedMember, item }) => {
       const member = userDB.get(signInedMember.current);
       setloginedMember(member);
       setM_mail(member.m_mail);
+    }
+    else {
+      alert("로그인을 해주세요!!!");
+      return (navigate("/user/sign_in"));
     }
 
 
