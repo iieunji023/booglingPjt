@@ -97,7 +97,6 @@ const SignUp = ({ userDB }) => {
           });
           console.log(userDB);
           navigate("/user/sign_up_result");
-          // alert("회원가입이 완료되었습니다.");
         }
         break;
 
@@ -158,6 +157,7 @@ const SignUp = ({ userDB }) => {
   };
   // Validate END
 
+  // 로그인 창 html START
   return (
     <section>
       <div className="section_wrap">
@@ -254,6 +254,7 @@ const SignUp = ({ userDB }) => {
           </div>
         </div>
       </div>
+      {/* 로그인 창 html END */}
     </section>
   );
 };

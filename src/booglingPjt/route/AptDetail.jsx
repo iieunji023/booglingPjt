@@ -3,7 +3,7 @@ import "./css/aptDetail.css";
 import AptDetailList from "../AptDetailList";
 import LikeBtn from "../LikeBtn";
 import KakaoMapDetail from "../KakaoMapDetail";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import FavoritesList from "../FavoritesList";
 
 const AptDetail = ({ userDB, signInedMember, item }) => {
@@ -14,13 +14,13 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
   const [loginedMember, setloginedMember] = useState("");
 
   useEffect(() => {
-    console.log('[AptDetail] useEffect() CALLED');
-    if (signInedMember.current !== '') {
+    console.log("[AptDetail] useEffect() CALLED");
+    if (signInedMember.current !== "") {
       const member = userDB.get(signInedMember.current);
       setloginedMember(member);
       setM_mail(member.m_mail);
     }
-  }, []); 
+  }, []);
 
   let AptOriginalArray = [];
   item.forEach(function (item) {
@@ -32,14 +32,16 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
         AptArea: item2.전용면적,
         AptFloor: item2.층,
         AptRegion: item2.지역코드,
-        AptDate: (item2.월) + '월' + (item2.일) + '일',
+        AptDate: item2.월 + "월" + item2.일 + "일",
       });
     });
   });
-  let AptFilteredArray = []
-  if (id !== '') {
-    const filteredsearchValue = AptOriginalArray.filter((ele) => ele.AptName == id);
-    console.log('[Search] filteredsearchValue: ', filteredsearchValue)
+  let AptFilteredArray = [];
+  if (id !== "") {
+    const filteredsearchValue = AptOriginalArray.filter(
+      (ele) => ele.AptName == id
+    );
+    console.log("[Search] filteredsearchValue: ", filteredsearchValue);
     filteredsearchValue.forEach(function (filteredsearchValue) {
       AptFilteredArray.push({
         AptName: filteredsearchValue.AptName,
@@ -54,7 +56,6 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
 
   // console.log('[AptDetail] AptFilteredArray------>', AptFilteredArray)
 
-
   let aptTitleName = AptFilteredArray[0].AptName;
   let aptTitleAddress = AptFilteredArray[0].AptAdress;
 
@@ -62,7 +63,6 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
     console.log("[AptDetail] click");
 
     if (favoriteBtn) {
-
       // if (userDB.get(m_mail).m_favoriteApt === aptTitleName) {
       //   userDB.get(m_mail, {
       //     m_favoriteApt: ''
@@ -72,18 +72,18 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
       return setFavoriteBtn(false);
     } else {
       userDB.set(m_mail, {
-        m_favoriteApt: AptFilteredArray
+        m_favoriteApt: AptFilteredArray,
       });
-      console.log('즐겨찾기 추가', userDB.get(m_mail));
+      console.log("즐겨찾기 추가", userDB.get(m_mail));
       // if (signInedMember.current !== '') {
       //   setM_favoriteApt(aptTitleName);
       //   console.log('[AptDetail] m_favoriteApt', { m_favoriteApt });
       //   <FavoritesList m_favoriteApt={m_favoriteApt} favoriteBtn={favoriteBtn} />
       // }
 
-      return setFavoriteBtn(true)
+      return setFavoriteBtn(true);
     }
-  }
+  };
 
   // let aptTitleName = AptFilteredArray.map(item => item.AptName);
   // let aptTitleName = AptFilteredArray[0].AptName;
@@ -118,24 +118,22 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
                 <li>층수</li>
               </ul>
 
-              {
-                AptFilteredArray.map((ele, idx) => {
-                  return (
-                    <AptDetailList
-                      key={idx}
-                      AptName={ele.AptName}
-                      AptAdress={ele.AptAdress}
-                      AptPrice={ele.AptPrice}
-                      AptArea={ele.AptArea}
-                      AptFloor={ele.AptFloor}
-                      AptDate={ele.AptDate} />
-                  )
-                })
-              }
-
+              {AptFilteredArray.map((ele, idx) => {
+                return (
+                  <AptDetailList
+                    key={idx}
+                    AptName={ele.AptName}
+                    AptAdress={ele.AptAdress}
+                    AptPrice={ele.AptPrice}
+                    AptArea={ele.AptArea}
+                    AptFloor={ele.AptFloor}
+                    AptDate={ele.AptDate}
+                  />
+                );
+              })}
             </div>
 
-            <div className="page">
+            {/* <div className="page">
               <ul>
                 <li>
                   <a href="#none">&#60;</a>&nbsp; &nbsp;
@@ -159,10 +157,10 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
                   <a href="#none">&#62;</a>&nbsp; &nbsp;
                 </li>
               </ul>
-            </div>
+            </div> */}
           </li>
           <li className="menu_map">
-            <div className="detail_menu">
+            {/*<div className="detail_menu">
               <div className="contract_date">
                 <p>계약일자</p>
                 <input
@@ -227,7 +225,7 @@ const AptDetail = ({ userDB, signInedMember, item }) => {
               <div className="search_btn">
                 <a href="#none">찾기</a>
               </div>
-            </div>
+            </div> */}
             <div className="map">
               <KakaoMapDetail AptFilteredArray={AptFilteredArray} />
             </div>

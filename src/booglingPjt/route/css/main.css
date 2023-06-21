@@ -1,6 +1,7 @@
 main {
   /* background-color: #5fa4ed8c; */
   margin: 5px auto;
+  height: 900px;
 }
 
 /* main div.main ul li.logo {
@@ -84,8 +85,10 @@ main div.main li.view li {
   margin-right: 10px;
 }
 
+/* z-index: index.css에서 메뉴바 상단 고정시 지도 위로 보일 수 있게 하기 위함 */
 main div.main li.map li {
   border-radius: 10px;
+  z-index: 1;
 }
 
 main p.increase {
