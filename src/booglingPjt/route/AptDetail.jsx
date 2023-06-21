@@ -82,6 +82,14 @@ const AptDetail = ({ userDB, setUserDB, signInedMember, item }) => {
     console.log("[AptDetail] click");
 
     if (favoriteBtn) {
+      localStorage.getItem(member.m_mail); // 회원가입시에 사용한 아이디를 키값으로 만든 배열을 부릅니다.
+      let dataArray = JSON.parse(localStorage.getItem(member.m_mail));
+      let dataArrayIndex = dataArray.indexOf(id); // 로컬스토리지에 저장된 아파트 이름들의 인덱스번호를 찾습니다.
+      dataArray.splice(dataArrayIndex, 1); // 찾은 인덱스 번호와 일치하는 인덱스를 가진 아파트이름을 제거해줍니다.
+      JSON.stringify(dataArray); // 로컬스토리지에 저장된 배열을 다시 문자열로 바꿉니다.
+      localStorage.setItem(member.m_mail, JSON.stringify(dataArray));
+      console.log("즐겨찾기 삭제", dataArray);
+
       return setFavoriteBtn(false);
     } else {
       localStorage.getItem(member.m_mail);
@@ -94,15 +102,6 @@ const AptDetail = ({ userDB, setUserDB, signInedMember, item }) => {
       return setFavoriteBtn(true);
     }
   };
-
-  // userDB.get(m_mail)
-
-  // let aptTitleName = AptFilteredArray.map(item => item.AptName);
-  // let aptTitleName = AptFilteredArray[0].AptName;
-  // console.log("이름------------->", aptTitleName)
-  // let aptTitleAddress = AptFilteredArray.map(item => item.AptAdress);
-  // console.log("주소------------->", aptTitleAddress)
-
   return (
     <section>
       <div className="main">

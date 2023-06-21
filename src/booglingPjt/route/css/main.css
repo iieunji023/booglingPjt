@@ -60,8 +60,12 @@ main div.apt_top_main > div,
 main div.wishlist_main > div,
 main div.real_time_search_main > div {
   border-top: 1px solid #dadada;
-  padding-top: 7px;
+  padding-top: 5px;
   /* padding-bottom: 7px; */
+}
+
+main div.real_time_search_main > div {
+  text-align: center;
 }
 
 main div.wishlist_main > div,

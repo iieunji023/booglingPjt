@@ -7,6 +7,16 @@ const FavoritesList = ({ userDB, setUserDB, signInedMember, item }) => {
   const [favoritesArray, setFavoritesArray] = useState([]);
   const [favoriteListBtn, setFavoriteListBtn] = useState(false);
 
+  const LikeListBtnOnClick = () => {
+    console.log("[AptDetail] click");
+
+    if (favoriteListBtn) {
+      return setFavoriteListBtn(false);
+    } else {
+      return setFavoriteListBtn(true);
+    }
+  };
+
   return (
     <div className="wishlist">
       <div className="wishlist_title">즐겨찾기</div>
