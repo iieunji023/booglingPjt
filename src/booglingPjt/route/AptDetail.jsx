@@ -3,7 +3,7 @@ import "./css/aptDetail.css";
 import AptDetailList from "../AptDetailList";
 import LikeBtn from "../LikeBtn";
 import KakaoMapDetail from "../KakaoMapDetail";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { includes } from "lodash";
 import FavoritesList from "../FavoritesList";
 
@@ -13,6 +13,7 @@ const AptDetail = ({ userDB, setUserDB, signInedMember, item }) => {
   const [m_favoriteApt, setM_favoriteApt] = useState("");
   const [m_mail, setM_mail] = useState("");
   const [loginedMember, setloginedMember] = useState("");
+  const navigate = useNavigate();
   console.log("userDB===========>", userDB);
 
   useEffect(() => {
@@ -21,6 +22,9 @@ const AptDetail = ({ userDB, setUserDB, signInedMember, item }) => {
       const member = userDB.get(signInedMember.current);
       setloginedMember(member);
       setM_mail(member.m_mail);
+    } else {
+      alert("로그인을 해주세요!!!");
+      return navigate("/user/sign_in");
     }
 
     // 상세페이지 진입 시 현재 로그인 된 사람 아이디가 키값인 로컬스토리지 배열에 아파트명이 동일하다면 true 없다면 false
