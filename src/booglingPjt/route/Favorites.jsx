@@ -1,21 +1,20 @@
 import React from "react";
 import './css/favorites.css';
 import { Link } from "react-router-dom";
+import FavoritesList from "../FavoritesList";
 
 const Favorites = () => {
-  return(
+  return (
     <section>
       <div className="favorites">
-        <div class="title">즐겨찾기</div>
-        <div class="list">
-          <ul class="list_name">
+        <div className="favorite_title">즐겨찾기</div>
+        <div className="favorite_list">
+          <ul className="favorite_list_name">
             <li>아파트</li>
-            <li>거래가격</li>
-            <li class="area">평수</li>
-            <li class="floor">층수</li>
-            <li class="btn"><input type="checkbox" id="toggle" hidden/> </li>
+            <li>주소</li>
+            <li className="btn"></li>
           </ul>
-          
+          <FavoritesList />
         </div>
         <div class="page">
           <ul>
