@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from 'react-router-dom';
-
-
+import { useParams, Link } from "react-router-dom";
 
 const Favorites = ({ userDB, setUserDB, signInedMember, item }) => {
   const [favoriteBtn, setFavoriteBtn] = useState(false);
@@ -12,10 +10,9 @@ const Favorites = ({ userDB, setUserDB, signInedMember, item }) => {
 
   // console.log("--999999999999999", m_mail)
 
-
   // console.log("member----------", member);
   useEffect(() => {
-    if (signInedMember.current !== '') {
+    if (signInedMember.current !== "") {
       const member = userDB.get(signInedMember.current);
       setloginedMember(member);
       setM_mail(member.m_mail);
@@ -31,21 +28,21 @@ const Favorites = ({ userDB, setUserDB, signInedMember, item }) => {
 
   // let member = userDB.get(signInedMember.current);
 
-
   return (
     <>
-      {
-        localDataList.map((item, idx) => (
-          idx <= 7 ?
-            <div className="wishlist_main">
-              <Link to={`/apt_detail/${item}`} >{item}</Link>
-
+      {localDataList.map((item, idx) =>
+        idx <= 7 ? (
+          <div className="wishlist_main">
+            <div>
+              <Link to={`/apt_detail/${item}`}>{item}</Link>
             </div>
-            : ""
-        ))
-      }
+          </div>
+        ) : (
+          ""
+        )
+      )}
     </>
   );
-}
+};
 
 export default Favorites;

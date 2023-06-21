@@ -61,6 +61,12 @@ main div.wishlist_main > div,
 main div.real_time_search_main > div {
   border-top: 1px solid #dadada;
   padding-top: 7px;
+  /* padding-bottom: 7px; */
+}
+
+main div.wishlist_main > div,
+main div.real_time_search_main > div {
+  padding-bottom: 7px;
 }
 
 main div.apt_ranking_main ul,
