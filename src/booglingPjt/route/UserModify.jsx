@@ -162,10 +162,12 @@ const UserModify = ({ userDB, signInedMember }) => {
 
   return (
     <section>
-      <div class="section_wrap">
+      <div class="modify_section_wrap">
         <div class="modify">
           {/* <div class="userName"> */}
+          <div className="modify_title">회원정보수정</div>
           <input
+            className="m_name"
             type="text"
             name="m_name"
             placeholder="이름"

@@ -6,7 +6,7 @@ const Header = () => {
     <header>
       <div className="logo">
         <Link to="/">
-          <img src="./imgs/부글링로고.png" />
+          <img src="./imgs/부글링글자만.png" />
         </Link>
       </div>
     </header>

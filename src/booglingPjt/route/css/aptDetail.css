@@ -3,6 +3,10 @@ section div.main {
     margin: 0 auto;
 }
 section li.detail {
+    background-color: #fff;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    border-radius: 20px;
     width: 550px;
     margin: 0 auto;
     margin-top: 60px;
@@ -32,8 +36,8 @@ div.like_btn {
 
 div.like_btn button {
     width: 50px; height: 65px;
-    background-color: #fff;
-    border: 1px solid #fff;
+    background-color: #5fa4ed00;
+    border: 1px solid #5fa4ed00;
 }
 
 div.like_btn img {
@@ -126,4 +130,9 @@ section div.detail_menu a {
 
 section div.map {
     margin: 30px auto;
+    
+}
+
+section div.map li {
+    border-radius: 20px;
 }
