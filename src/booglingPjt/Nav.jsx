@@ -6,6 +6,7 @@ import React, {
 } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+// forwardRef를 사용해서 ref 전달하기 위함
 const Nav = forwardRef(
   ({ signInedMember, userDB, realTimeSearch, setRealTimeSearch }, ref) => {
     const [loginedMember, setLoginedMember] = useState(""); // 현재 로그인한 회원 정보를 저장하는 상태 변수
@@ -55,8 +56,9 @@ const Nav = forwardRef(
           searchValue: searchValue,
         },
       });
-      if (searchValue !== '') { //아파트명이 빈칸이 아니라면 실시간 검색내역 목록 추가
-        realTimeSearch.push(searchValue) // 가져온 데이터를 목록에 추가
+      if (searchValue !== "") {
+        //아파트명이 빈칸이 아니라면 실시간 검색내역 목록 추가
+        realTimeSearch.push(searchValue); // 가져온 데이터를 목록에 추가
         let temp = realTimeSearch.slice();
         setRealTimeSearch(temp); // 목록 업데이트
       }

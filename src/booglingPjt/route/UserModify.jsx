@@ -17,6 +17,7 @@ const UserModify = ({ userDB, signInedMember }) => {
 
   const navigate = useNavigate();
 
+  // 수정해야 할 사용자 정보 불러오기 위함 ---> 각각의 상태 변수 loginedMember에서 가져온 값으로 설정
   useEffect(() => {
     console.log("[UserModify] useEffect() CALLED!!");
     loginedMember = userDB.get(signInedMember.current);
@@ -164,7 +165,6 @@ const UserModify = ({ userDB, signInedMember }) => {
     <section>
       <div class="modify_section_wrap">
         <div class="modify">
-          {/* <div class="userName"> */}
           <div className="modify_title">회원정보수정</div>
           <input
             className="m_name"
@@ -230,7 +230,6 @@ const UserModify = ({ userDB, signInedMember }) => {
               setM_phone(e.target.value);
             }}
           />
-          {/* </div> */}
           <br />
           <div class="btn">
             <div>

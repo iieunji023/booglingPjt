@@ -7,7 +7,6 @@ const SIGN_UP_BUTTON = "1";
 const RESET_BUTTON = "2";
 
 const SignUp = ({ userDB }) => {
-  // const [userDB, setUserDB] = useState(new Map());
   const navigate = useNavigate();
   const [m_name, setM_name] = useState("");
   const [m_mail, setM_mail] = useState("");
@@ -17,21 +16,19 @@ const SignUp = ({ userDB }) => {
   const [m_addr, setM_addr] = useState("");
   const [m_phone, setM_phone] = useState("");
 
-  // const [m_mail_comfirm, setM_mail_confirm] = useState(false);
-
   let loginedMember = "";
 
   useEffect(() => {
     console.log("[SignUp] useEffect() CALLED!!");
   });
 
-  //비밀번호 정규식
+  //비밀번호 정규식 ---> 최소 8-25글자, 영문자/특수문자/숫자를 하나 포함해야 함
   function CheckPw(str) {
     var reg1 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
     return reg1.test(str);
   }
 
-  //휴대폰번호 정규식
+  //휴대폰번호 정규식 ---> 010,011,016~9로 시작, 총 11자리
   function checkPhonenumber(str) {
     // 숫자만 입력시
     var regExp2 = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/;
